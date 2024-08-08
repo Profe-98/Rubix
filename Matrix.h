@@ -30,21 +30,13 @@ namespace Rubix
 
 		Matrix(std::string name, int rows, int cols, double elem) : _name(name)
 		{
-			//MatrixStorage(T val, std::vector<int> strides, int size_logic, int offset = 0, int device = 0, int rows, int cols)
 			this->_layout =  std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides(2, 0);
 			this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 		}
 
-		//For the resulting matrices of mathematical Operations
-		Matrix(std::string name, MatrixStorage storage) : _name(name), _storage(storage)
-		{
-
-		}
-
 		Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor = true) : _name{ name }
 		{
-			//MatrixStorage(std::vector<T> buffer, std::vector<int> strides , int size_logic, int offset = 0, int device = 0, int rows, int cols)
 			this->_layout = std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides;
 			if (rowmajor)
@@ -52,6 +44,51 @@ namespace Rubix
 			else
 				strides = { rows, 1 };
 			this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
+		}
+
+		~Matrix() noexcept
+		{
+			_layout = nullptr;
+		}
+
+		//copy ctor
+		Matrix(const Matrix& m) : _layout(std::make_unique<MatrixLayout>(*m._layout)), _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		{
+
+		}
+
+		//copy assignment
+		Matrix& operator =(const Matrix& m)
+		{
+			if(this != &m)
+			{
+				_layout = nullptr;
+				_layout = std::make_unique<MatrixLayout>(*m._layout);
+				_storage = m._storage;
+				_name = m._name;
+				_mutable = m._mutable;
+			}
+			return *this;
+		}
+
+		//move c'tor
+		Matrix(Matrix&& m) noexcept : _layout(std::make_unique<MatrixLayout>(*m._layout)), _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		{
+			m._layout = nullptr;
+		}
+		
+		//move assignment
+		Matrix& operator =(Matrix&& m)
+		{
+			if (this != &m)
+			{
+				_layout = nullptr;
+				_layout = std::make_unique<MatrixLayout>(*m._layout);
+				_storage = m._storage;
+				_name = m._name;
+				_mutable = m._mutable;
+			}
+			return *this;
 		}
 
 		bool IsEmpty()
@@ -404,11 +441,6 @@ namespace Rubix
 			return os;
 		}
 
-		//Rule of 0
-		~Matrix() = default;
-		Matrix(const Matrix&) = default;
-		Matrix& operator =(const Matrix&) = default;
-		Matrix(Matrix&&) = default;
-		Matrix& operator =(Matrix&&) = default;
+
 	};
 }
