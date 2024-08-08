@@ -23,7 +23,9 @@
     <ClCompile Include="Compute_Object.cpp" />
     <ClCompile Include="Dtype.cpp" />
     <ClCompile Include="LogHandler.cpp" />
-    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Matrix.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./OpenCL/include;</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="MatrixLayout.cpp" />
     <ClCompile Include="MatrixStorage.cpp" />
     <ClCompile Include="Ops_Matrix.cpp" />

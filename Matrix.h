@@ -13,10 +13,6 @@ namespace Rubix
 {
 	using namespace std::chrono;
 
-	/// <summary>
-	/// As soon as we understand pointers, references and instances of classes completely, we are going to rework every c++ file we created(this one included).
-	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	class Matrix
 	{
 	private:
@@ -46,11 +42,17 @@ namespace Rubix
 			this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
 		}
 
+		Matrix(std::string name, MatrixStorage storage) : _name(name), _storage(storage)
+		{
+
+		}
+
 		~Matrix() noexcept
 		{
 			_layout = nullptr;
 		}
 
+		
 		//copy ctor
 		Matrix(const Matrix& m) : _layout(std::make_unique<MatrixLayout>(*m._layout)), _storage(m._storage), _name(m._name), _mutable(m._mutable)
 		{

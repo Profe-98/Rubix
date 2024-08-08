@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rubix", "Rubix.vcxproj", "{4CD3656F-0A72-46E2-863E-AF37D19E13B5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix_Lifecycle_mv_cp_Test", "Rubix\Matrix_Lifecycle_mv_cp_Test\Matrix_Lifecycle_mv_cp_Test.vcxproj", "{4617620E-AEB7-4894-9357-A7DA3E15EC3E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,14 +21,6 @@ Global
 		{4CD3656F-0A72-46E2-863E-AF37D19E13B5}.Release|x64.Build.0 = Release|x64
 		{4CD3656F-0A72-46E2-863E-AF37D19E13B5}.Release|x86.ActiveCfg = Release|Win32
 		{4CD3656F-0A72-46E2-863E-AF37D19E13B5}.Release|x86.Build.0 = Release|Win32
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Debug|x64.ActiveCfg = Debug|x64
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Debug|x64.Build.0 = Debug|x64
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Debug|x86.ActiveCfg = Debug|Win32
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Debug|x86.Build.0 = Debug|Win32
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Release|x64.ActiveCfg = Release|x64
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Release|x64.Build.0 = Release|x64
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Release|x86.ActiveCfg = Release|Win32
-		{4617620E-AEB7-4894-9357-A7DA3E15EC3E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
