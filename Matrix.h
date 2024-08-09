@@ -75,7 +75,7 @@ namespace Rubix
 		}
 		
 		//move assignment
-		Matrix& operator =(Matrix&& m)
+		Matrix& operator =(Matrix&& m) noexcept
 		{
 			if (this != &m)
 			{
@@ -200,7 +200,7 @@ namespace Rubix
 		}
 
 		/// <summary>
-		/// This operatur is used to access a single element / entry in the matrix 
+		/// This operator is used to access a single element / entry in the matrix 
 		/// </summary>
 		/// <param name="m"> The index for the row in which our target is stored.</param>
 		/// <param name="n"> The index for the column in which our target is stored.</param>

@@ -2,7 +2,7 @@
 #include <boost/test/included/unit_test.hpp>
 #include <boost/test/test_tools.hpp>
 
-//arrange act assert
+//arrange 
 
 #ifndef CL_TARGET_OPENCL_VERSION
 #define CL_TARGET_OPENCL_VERSION 200
@@ -24,6 +24,7 @@ namespace
 	using namespace boost::unit_test;
 	BOOST_AUTO_TEST_CASE(test_matr_life)
 	{
+		//act; BOOST_CHECK = assert
 		int res = RubixMain::Prepare_Library(); // prep Rubix;
 		BOOST_CHECK(res == 1);
 
