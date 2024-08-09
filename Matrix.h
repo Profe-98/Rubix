@@ -8,19 +8,14 @@
 #include <string>
 #include <map>
 #include <set>
-#include "MatrixLayout.h"
+#include "MatrixStorage.h"
 namespace Rubix
 {
 	using namespace std::chrono;
 
-	/// <summary>
-	/// As soon as we understand pointers, references and instances of classes completely, we are going to rework every c++ file we created(this one included).
-	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	class Matrix
 	{
 	private:
-		std::unique_ptr<MatrixLayout> _layout;
 		MatrixStorage _storage;
 		std::string _name;
 		bool _mutable = true;
@@ -30,28 +25,65 @@ namespace Rubix
 
 		Matrix(std::string name, int rows, int cols, double elem) : _name(name)
 		{
-			//MatrixStorage(T val, std::vector<int> strides, int size_logic, int offset = 0, int device = 0, int rows, int cols)
-			this->_layout =  std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides(2, 0);
 			this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 		}
 
-		//For the resulting matrices of mathematical Operations
-		Matrix(std::string name, MatrixStorage storage) : _name(name), _storage(storage)
-		{
-
-		}
-
 		Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor = true) : _name{ name }
 		{
-			//MatrixStorage(std::vector<T> buffer, std::vector<int> strides , int size_logic, int offset = 0, int device = 0, int rows, int cols)
-			this->_layout = std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides;
 			if (rowmajor)
 				strides = { 1, cols };
 			else
 				strides = { rows, 1 };
 			this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
+		}
+
+		Matrix(std::string name, MatrixStorage storage) : _name(name), _storage(storage)
+		{
+
+		}
+
+		~Matrix() noexcept
+		{
+			std::cout << _name << ": Matrix d'tor called.\n";
+		}
+
+		
+		//copy ctor
+		Matrix(const Matrix& m) : _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		{
+
+		}
+
+		//copy assignment
+		Matrix& operator =(const Matrix& m)
+		{
+			if(this != &m)
+			{
+				_storage = m._storage;
+				_name = m._name;
+				_mutable = m._mutable;
+			}
+			return *this;
+		}
+
+		//move c'tor
+		Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		{
+
+		}
+		
+		//move assignment
+		Matrix& operator =(Matrix&& m)
+		{
+			if (this != &m)
+			{
+				_storage = m._storage;
+				_name = m._name;
+				_mutable = m._mutable;
+			}
+			return *this;
 		}
 
 		bool IsEmpty()
@@ -74,19 +106,19 @@ namespace Rubix
 			return this->Getrows() == this->Getcols();
 		}
 
-		std::string name()
+		std::string Getname()
 		{
 			return this->_name;
 		}
 
 		int size_logical()
 		{
-			return this->_layout->size_logic();
+			return this->_storage.GetSize_logic();
 		}
 		
 		int size_logical_b()
 		{
-			return this->_layout->size_logic() * _layout->DType_size();
+			return this->_storage.GetSize_logic() * sizeof(double);
 		}
 
 		int size_physical()
@@ -101,12 +133,12 @@ namespace Rubix
 
 		int Getrows()
 		{
-			return this->_layout->GetRows();
+			return this->_storage.GetRows();
 		}
 
 		int Getcols()
 		{
-			return this->_layout->GetCols();
+			return this->_storage.GetCols();
 		}
 
 		std::vector<int> Getstrides()
@@ -121,7 +153,7 @@ namespace Rubix
 
 		std::string GetDType()
 		{
-			return this->_layout->GetDType();
+			return "double"; // temporary
 		}
 
 		/// <summary>
@@ -404,11 +436,6 @@ namespace Rubix
 			return os;
 		}
 
-		//Rule of 0
-		~Matrix() = default;
-		Matrix(const Matrix&) = default;
-		Matrix& operator =(const Matrix&) = default;
-		Matrix(Matrix&&) = default;
-		Matrix& operator =(Matrix&&) = default;
+
 	};
 }

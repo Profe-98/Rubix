@@ -19,45 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CLManager.cpp" />
-    <ClCompile Include="Compute_Object.cpp" />
-    <ClCompile Include="Dtype.cpp" />
-    <ClCompile Include="LogHandler.cpp" />
-    <ClCompile Include="Matrix.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./OpenCL/include;</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="MatrixStorage.cpp" />
-    <ClCompile Include="Ops_Matrix.cpp" />
-    <ClCompile Include="RubixMain.cpp" />
-    <ClCompile Include="Tensor.cpp" />
-    <ClCompile Include="ThreadWrap.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CLManager.h" />
-    <ClInclude Include="Compute_Object.h" />
-    <ClInclude Include="Dtype.h" />
-    <ClInclude Include="LogHandler.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixStorage.h" />
-    <ClInclude Include="Ops_Matrix.h" />
-    <ClInclude Include="RubixMain.h" />
-    <ClInclude Include="Tensor.h" />
-    <ClInclude Include="ThreadWrap.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Matrix_Add_Kernels.cl" />
-    <None Include="Matrix_Div_Kernels.cl" />
-    <None Include="Matrix_Mult_Kernels.cl" />
-    <None Include="Matrix_Subtr_Kernels.cl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
+    <ClCompile Include="Testctors.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4cd3656f-0a72-46e2-863e-af37d19e13b5}</ProjectGuid>
-    <RootNamespace>Rubix</RootNamespace>
+    <ProjectGuid>{95390ca9-f6ed-4e49-a2f9-d1870a3a4a91}</ProjectGuid>
+    <RootNamespace>UnitTestMatrixLifecycle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -75,7 +43,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -105,6 +73,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>./x64/Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -139,14 +110,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>./Tests/boost_1_85_0;.\OpenCL\include;</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>../;../boost_1_85_0;../OpenCL/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>.\OpenCL\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenCL.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../x64/Debug;../OpenCL/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenCL.lib;Rubix.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

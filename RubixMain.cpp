@@ -1,7 +1,12 @@
-#define __CL_ENABLE_EXCEPTIONS // must be defined before OpenCL header files are included
+#ifndef CL_TARGET_OPENCL_VERSION
+#define CL_TARGET_OPENCL_VERSION 200
+#endif // !CL_TARGET_OPENCL_VERSION // must be defined before OpenCL header files are included
+
+#ifndef __CL_ENABLE_EXCEPTIONS
+#define __CL_ENABLE_EXCEPTIONS
+#endif // !__CL_ENABLE_EXCEPTIONS
 #include "RubixMain.h"
 #include "CLManager.h"
-#define CL_TARGET_OPENCL_VERSION 200
 #include "CL/opencl.h"
 #include "CL/cl.h"
 namespace Rubix
