@@ -50,6 +50,7 @@ namespace Rubix
 		~Matrix() noexcept
 		{
 			_layout = nullptr;
+			std::cout << _name << ": Matrix d'tor called.\n";
 		}
 
 		
@@ -113,7 +114,7 @@ namespace Rubix
 			return this->Getrows() == this->Getcols();
 		}
 
-		std::string name()
+		std::string Getname()
 		{
 			return this->_name;
 		}
