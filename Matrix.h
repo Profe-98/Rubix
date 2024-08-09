@@ -8,7 +8,7 @@
 #include <string>
 #include <map>
 #include <set>
-#include "MatrixLayout.h"
+#include "MatrixStorage.h"
 namespace Rubix
 {
 	using namespace std::chrono;
@@ -16,7 +16,6 @@ namespace Rubix
 	class Matrix
 	{
 	private:
-		std::unique_ptr<MatrixLayout> _layout;
 		MatrixStorage _storage;
 		std::string _name;
 		bool _mutable = true;
@@ -26,14 +25,12 @@ namespace Rubix
 
 		Matrix(std::string name, int rows, int cols, double elem) : _name(name)
 		{
-			this->_layout =  std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides(2, 0);
 			this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 		}
 
 		Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor = true) : _name{ name }
 		{
-			this->_layout = std::make_unique<MatrixLayout>(rows, cols);
 			std::vector<int> strides;
 			if (rowmajor)
 				strides = { 1, cols };
@@ -49,13 +46,12 @@ namespace Rubix
 
 		~Matrix() noexcept
 		{
-			_layout = nullptr;
 			std::cout << _name << ": Matrix d'tor called.\n";
 		}
 
 		
 		//copy ctor
-		Matrix(const Matrix& m) : _layout(std::make_unique<MatrixLayout>(*m._layout)), _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		Matrix(const Matrix& m) : _storage(m._storage), _name(m._name), _mutable(m._mutable)
 		{
 
 		}
@@ -65,8 +61,6 @@ namespace Rubix
 		{
 			if(this != &m)
 			{
-				_layout = nullptr;
-				_layout = std::make_unique<MatrixLayout>(*m._layout);
 				_storage = m._storage;
 				_name = m._name;
 				_mutable = m._mutable;
@@ -75,9 +69,9 @@ namespace Rubix
 		}
 
 		//move c'tor
-		Matrix(Matrix&& m) noexcept : _layout(std::make_unique<MatrixLayout>(*m._layout)), _storage(m._storage), _name(m._name), _mutable(m._mutable)
+		Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name), _mutable(m._mutable)
 		{
-			m._layout = nullptr;
+
 		}
 		
 		//move assignment
@@ -85,8 +79,6 @@ namespace Rubix
 		{
 			if (this != &m)
 			{
-				_layout = nullptr;
-				_layout = std::make_unique<MatrixLayout>(*m._layout);
 				_storage = m._storage;
 				_name = m._name;
 				_mutable = m._mutable;
@@ -121,12 +113,12 @@ namespace Rubix
 
 		int size_logical()
 		{
-			return this->_layout->size_logic();
+			return this->_storage.GetSize_logic();
 		}
 		
 		int size_logical_b()
 		{
-			return this->_layout->size_logic() * _layout->DType_size();
+			return this->_storage.GetSize_logic() * sizeof(double);
 		}
 
 		int size_physical()
@@ -141,12 +133,12 @@ namespace Rubix
 
 		int Getrows()
 		{
-			return this->_layout->GetRows();
+			return this->_storage.GetRows();
 		}
 
 		int Getcols()
 		{
-			return this->_layout->GetCols();
+			return this->_storage.GetCols();
 		}
 
 		std::vector<int> Getstrides()
@@ -161,7 +153,7 @@ namespace Rubix
 
 		std::string GetDType()
 		{
-			return this->_layout->GetDType();
+			return "double"; // temporary
 		}
 
 		/// <summary>

@@ -30,9 +30,6 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixLayout.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="MatrixStorage.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixLayout.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="MatrixStorage.h">
