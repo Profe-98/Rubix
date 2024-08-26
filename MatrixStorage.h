@@ -21,7 +21,6 @@ namespace Rubix
 		int _offset; // Position of the matrix's first element in the buffer. default is always 0
 		int _rows;
 		int _cols;
-		std::shared_ptr<ComputeObject> _comp_obj = nullptr;
 		//int _major_Dim = 0; //default 0 = width dimension (row major order); That means one step is needed to get to the next element in that dimension
 
 		public:
@@ -40,18 +39,6 @@ namespace Rubix
 		MatrixStorage& operator =(MatrixStorage&&) = default;
 
 		std::shared_ptr<ComputeObject> GetCompObj();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="id"></param>
-		void SetCompObj(std::string name);
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="obj"></param>
-		void SetCompObj(std::shared_ptr<ComputeObject> obj);
 
 		std::vector<double> GetBuffer();
 
@@ -85,22 +72,22 @@ namespace Rubix
 
 		void resize();
 
-		MatrixStorage operator +(double scalar);
-		MatrixStorage operator +(MatrixStorage rhs);
-		MatrixStorage operator +=(double scalar);
-		MatrixStorage operator +=(MatrixStorage rhs);
-		MatrixStorage operator -(double scalar);
-		MatrixStorage operator -(MatrixStorage rhs);
-		MatrixStorage operator -=(double scalar);
-		MatrixStorage operator -=(MatrixStorage rhs);
-		MatrixStorage operator *(double scalar);
-		MatrixStorage operator *(MatrixStorage rhs);
-		MatrixStorage operator *=(double scalar);
-		MatrixStorage operator *=(MatrixStorage rhs);
-		MatrixStorage operator /(double scalar);
-		MatrixStorage operator /(MatrixStorage rhs);
-		MatrixStorage operator /=(double scalar);
-		MatrixStorage operator /=(MatrixStorage rhs);
+		MatrixStorage Add_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Add_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Add_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Add_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Subtr_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Subtr_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Subtr_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Subtr_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Mult_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Mult_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Mult_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Mult_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Div_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Div_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Div_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject);
+		MatrixStorage Div_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject);
 
 		friend std::ostream& operator<<(std::ostream& op, MatrixStorage& strg);
 	};

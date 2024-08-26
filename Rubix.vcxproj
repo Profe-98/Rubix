@@ -22,6 +22,7 @@
     <ClCompile Include="CLManager.cpp" />
     <ClCompile Include="Compute_Object.cpp" />
     <ClCompile Include="Dtype.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="LogHandler.cpp" />
     <ClCompile Include="Matrix.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./OpenCL/include;</AdditionalIncludeDirectories>
@@ -36,6 +37,7 @@
     <ClInclude Include="CLManager.h" />
     <ClInclude Include="Compute_Object.h" />
     <ClInclude Include="Dtype.h" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="LogHandler.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MatrixStorage.h" />

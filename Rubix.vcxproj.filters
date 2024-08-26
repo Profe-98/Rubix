@@ -45,6 +45,9 @@
     <ClCompile Include="ThreadWrap.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLManager.h">
@@ -75,6 +78,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="ThreadWrap.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
