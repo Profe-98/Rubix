@@ -28,6 +28,9 @@ __kernel void matrix_subtr_matrix(global double* matrix_l, global double* matrix
 		{
 			res[idx_r] = matrix_l[idx_l] + matrix_r[idx_r]; 
 		}
-		res[idx_l] = matrix_l[idx_l] + matrix_r[idx_r];
+        else
+        {
+            res[idx_l] = matrix_l[idx_l] + matrix_r[idx_r];
+        }
     }
 }

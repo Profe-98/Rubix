@@ -1,10 +1,7 @@
 __kernel void matrix_add_scalar(__global double* matrix, __global double* result, const double scalar, const unsigned int size)
 {
 	int i = get_global_id(0);
-	if(i < size)
-	{
-		result[i] = matrix[i] + scalar;
-	}
+	result[i] = matrix[i] + scalar;
 }
 
 
@@ -13,18 +10,13 @@ __kernel void matrix_add_matrix(__global double* matrix_lhs,  __global double* m
 {
 	int row = get_global_id(0);
 	int col = get_global_id(1);
+
 	if(row < rows && col < cols)
 	{
 		//Calculate mem Index for both matrices each
-		int idx_LHS = row* stride_c_lhs + col * stride_r_lhs;
-		int idx_RHS = row* stride_c_rhs + col * stride_r_rhs;
-
-
+		int idx_LHS = row * stride_c_lhs + col * stride_r_lhs;
+		int idx_RHS = row * stride_c_rhs + col * stride_r_rhs;
 		//Perform addition
-		if(memsize_lhs < memsize_rhs)
-		{
-			result[idx_RHS] = matrix_lhs[idx_LHS] + matrix_rhs[idx_RHS]; 
-		}
 		result[idx_LHS] = matrix_lhs[idx_LHS] + matrix_rhs[idx_RHS];
 	}
 }

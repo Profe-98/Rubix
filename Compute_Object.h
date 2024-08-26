@@ -19,6 +19,7 @@ namespace Rubix
 	class ComputeObject
 	{
 		private:
+
 		int _id;
 		std::string _krnlname;
 		cl_int _errcode = 1;
@@ -31,12 +32,12 @@ namespace Rubix
 		std::deque<cl_mem> _buffers;
 		std::deque<cl_mem> _pipes;
 		//_global_work_offset;
-		std::size_t _global_work_size = 0;
 		//_local_work_size;
 		
-		//addevice();
-		//those methods are not the last methods to be implemented here, but are a good fundament to build up on. There's more to come! Dont forget INIT
+
 		public:
+		#define RUBIX_COMPUTE_OBJECT_MAXDIMS 3
+
 		ComputeObject(std::string krnlname, cl_platform_id pltfrm, cl_device_id device, std::string krnlsrc);
 
 		~ComputeObject();
@@ -94,7 +95,7 @@ namespace Rubix
 		/// <param name="num_events_in_wait_list"></param>
 		/// <param name="event_wait_list"></param>
 		/// <param name="evt"></param>
-		void EnqueueNDRangeKernel(int work_dim = 1, int num_events_in_wait_list = 0, const cl_event* event_wait_list = nullptr, cl_event* evt = nullptr);
+		void EnqueueNDRangeKernel(std::size_t* local_work_size, std::size_t* global_work_size, int work_dim = 1, int num_events_in_wait_list = 0, const cl_event* event_wait_list = nullptr, cl_event* evt = nullptr);
 
 
 		void CreateQueue(cl_command_queue_properties properties = 0);
@@ -109,10 +110,6 @@ namespace Rubix
 
 		void ReleaseBuffers();
 
-
-		void SetWorkSize_global(int size);
-
-		int GetWorkSize_global();
 
 		void CreatePipemem(cl_mem_flags flags, cl_uint packet_size, cl_uint max_packets, const cl_pipe_properties* properties);
 

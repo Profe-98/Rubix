@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rubix", "Rubix.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unit_Test_Matrix_Lifecycle", "Unit_Test_Matrix_Lifecycle\Unit_Test_Matrix_Lifecycle.vcxproj", "{95390CA9-F6ED-4E49-A2F9-D1870A3A4A91}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix_Addition_Test", "Matrix_Addition_Test\Matrix_Addition_Test.vcxproj", "{1E3DA9AE-F229-42E1-BB35-EE31E712A773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{95390CA9-F6ED-4E49-A2F9-D1870A3A4A91}.Release|x64.Build.0 = Release|x64
 		{95390CA9-F6ED-4E49-A2F9-D1870A3A4A91}.Release|x86.ActiveCfg = Release|Win32
 		{95390CA9-F6ED-4E49-A2F9-D1870A3A4A91}.Release|x86.Build.0 = Release|Win32
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Debug|x64.ActiveCfg = Debug|x64
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Debug|x64.Build.0 = Debug|x64
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Debug|x86.ActiveCfg = Debug|Win32
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Debug|x86.Build.0 = Debug|Win32
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Release|x64.ActiveCfg = Release|x64
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Release|x64.Build.0 = Release|x64
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Release|x86.ActiveCfg = Release|Win32
+		{1E3DA9AE-F229-42E1-BB35-EE31E712A773}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

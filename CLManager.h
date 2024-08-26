@@ -39,7 +39,7 @@ namespace Rubix
 		inline static std::map<std::string, std::string> opkrnls_custom; // l8r
 		inline static const std::vector<std::vector<std::string>> cl_file_paths =
 		{
-			{ "D:/Projekte/Machine Learning/MLLibProjects/Rubix/Matrix_Add_Kernels.cl", "D:/Projekte/Machine Learning/MLLibProjects/Rubix/Matrix_Subtr_Kernels.cl", "D:/Projekte/Machine Learning/MLLibProjects/Rubix/Matrix_Mult_Kernels.cl", "D:/Projekte/Machine Learning/MLLibProjects/Rubix/Matrix_Div_Kernels.cl" },
+			{ "D:/Projekte/Machine Learning/Rubix/Matrix_Add_Kernels.cl", "D:/Projekte/Machine Learning/Rubix/Matrix_Subtr_Kernels.cl", "D:/Projekte/Machine Learning/Rubix/Matrix_Mult_Kernels.cl", "D:/Projekte/Machine Learning/Rubix/Matrix_Div_Kernels.cl" },
 			{}
 		}; // Make it changeble in the future so that kernels can be added by devs before and at runtime + relative paths must work. we go with this for know, because it's sufficient for testing and we haven't
 		// all default operations/kernels, yet.
@@ -53,6 +53,7 @@ namespace Rubix
 
 
 		static void CreateDevice(cl_device_type type = CL_DEVICE_TYPE_GPU, cl_uint num_entries = 1, cl_uint* num_devices = nullptr);
+
 
 		static void ReleaseDevice();
 
