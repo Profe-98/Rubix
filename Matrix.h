@@ -221,12 +221,17 @@ namespace Rubix
 		/// <returns>The - from the addition - resulting matrix packed in std::unique_ptr</returns>
 		std::unique_ptr<Matrix> operator +(Matrix& other)
 		{
-			std::string resname = this->_name + "_Add_" + other._name;
-			MatrixStorage res_strg = this->_storage + other._storage;
-			return std::make_unique<Matrix>(resname, res_strg);
+			try
+			{
 
-
-			return nullptr;//std::make_unique(name, this->Getrows(), this->Getcols(), v);
+				std::string resname = this->_name + "_Add_" + other._name;
+				MatrixStorage res_strg = this->_storage + other._storage;
+				return std::make_unique<Matrix>(resname, res_strg);
+			}
+			catch (const std::exception& e)
+			{
+				throw e;
+			}
 		}
 		
 		/// <summary>
@@ -236,12 +241,16 @@ namespace Rubix
 		/// <returns>The - from the addition - resulting matrix packed in std::unique_ptr</returns>
 		std::unique_ptr<Matrix> operator +(double scalar)
 		{
-			int s = this->size_physical();
-			if (s == 0)
-				throw std::invalid_argument("The given matrix is empty!");
-			std::string resname = this->_name + "_Add(s)_" + std::to_string(scalar);
-			MatrixStorage res_strg = this->_storage + scalar;
-			return std::make_unique<Matrix>(resname, res_strg);
+			try
+			{
+				std::string resname = this->_name + "_Add(s)_" + std::to_string(scalar);
+				MatrixStorage res_strg = this->_storage + scalar;
+				return std::make_unique<Matrix>(resname, res_strg);
+			}
+			catch (const std::exception& e)
+			{
+				throw e;
+			}
 		}
 
 		/// <summary>

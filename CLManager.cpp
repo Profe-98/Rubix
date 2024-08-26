@@ -1,10 +1,7 @@
-#include "CLManager.h"
-#include "CLManager.h"
 #define __CL_ENABLE_EXCEPTIONS // must be defined before OpenCL header files are included
 #define CL_TARGET_OPENCL_VERSION 200
 #include "CL/opencl.h"
 #include "CL/cl.h"
-#include "CLManager.h"
 #include <vector>
 #include <memory>
 #include <string>
@@ -20,6 +17,7 @@
 #include <random>
 #include <initializer_list>
 #include <map>
+#include "CLManager.h"
 #include "Matrix.h"
 #include "Dtype.h"
 #include "Compute_Object.h"
@@ -192,7 +190,7 @@ namespace Rubix
 		for (int i = 0; i < s_kn; ++i)
 		{
 			std::shared_ptr<ComputeObject> obj = std::make_shared<ComputeObject>(Kernel_Names[0][i], pltfrm, device, opkrnls[Kernel_Names[0][i]]);
-			std::cout << i + 1 << ": ComputeObject Initialised!\n";
+			//std::cout << i + 1 << ": ComputeObject Initialised!\n";
 			_compobj_map[Kernel_Names[0][i]] = obj;
 		}
 	}

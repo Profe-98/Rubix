@@ -19,6 +19,28 @@ namespace Rubix
 			std::filesystem::path rel_path = p.relative_path();
 			CLManager::CreatePlatform();
 			CLManager::CreateDevice();
+
+			int errcode;
+			char extensions[10000];
+			errcode = clGetDeviceInfo(CLManager::device, CL_DEVICE_EXTENSIONS, sizeof(extensions), &extensions, nullptr);
+			std::cout << "Errorcode: " << errcode << "\n";
+			for (auto& v : extensions)
+				std::cout << v;
+			std::cout << "\n";
+
+			std::size_t workgroupsizemax;
+			std::size_t workitemsizesmax[3];
+			cl_device_fp_config fpconfig;
+			cl_uint vectorsupport;
+			cl_uint maxcompunits;
+			clGetDeviceInfo(CLManager::device, CL_DEVICE_MAX_WORK_GROUP_SIZE, sizeof(workgroupsizemax), &workgroupsizemax, nullptr);
+			clGetDeviceInfo(CLManager::device, CL_DEVICE_MAX_WORK_ITEM_SIZES, sizeof(workitemsizesmax), workitemsizesmax, nullptr);
+			clGetDeviceInfo(CLManager::device, CL_DEVICE_DOUBLE_FP_CONFIG, sizeof(fpconfig), &fpconfig, nullptr);
+			clGetDeviceInfo(CLManager::device, CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE, sizeof(vectorsupport), &vectorsupport, nullptr);
+			clGetDeviceInfo(CLManager::device, CL_DEVICE_MAX_COMPUTE_UNITS, sizeof(maxcompunits), &maxcompunits, nullptr);
+			std::cout << "CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE: " << vectorsupport << "\nCL_DEVICE_DOUBLE_FP_CONFIG : " << fpconfig << "\nMAX_WORK_GROUP_SIZE: " << workgroupsizemax << "\nCL_DEVICE_MAX_COMPUTE_UNITS: " << maxcompunits << "\n";
+			for(auto& v : workitemsizesmax)
+				std::cout << "CL_DEVICE_MAX_WORK_ITEM_SIZE: " << v << "\n";
 			CLManager::CreateContext();
 			CLManager::CreateCMDQueue();
 			status_code = CLManager::ReadCLFILES();

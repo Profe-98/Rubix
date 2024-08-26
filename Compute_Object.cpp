@@ -2,6 +2,7 @@
 #include "CLManager.h"
 namespace Rubix
 {
+
 	ComputeObject::ComputeObject(std::string krnlname, cl_platform_id pltfrm, cl_device_id device, std::string krnlsrc) : _krnlname(krnlname), _platform(pltfrm), _device(device)
 	{
 		if (_platform == NULL || _context == NULL || _device == NULL)
@@ -52,6 +53,7 @@ namespace Rubix
 	{
 		// for now only w/ src
 		const char* src = kernelsrc.c_str();
+		std::cout << _krnlname << ":\n" << src << "\n";
 		cl_program progr = clCreateProgramWithSource(_context, count, &src, lengths, &_errcode);
 		if (_errcode != CL_SUCCESS)
 		{
@@ -207,9 +209,9 @@ namespace Rubix
 	/// <param name="num_events_in_wait_list"></param>
 	/// <param name="event_wait_list"></param>
 	/// <param name="evt"></param>
-	void ComputeObject::EnqueueNDRangeKernel(int work_dim, int num_events_in_wait_list, const cl_event* event_wait_list, cl_event* evt)
+	void ComputeObject::EnqueueNDRangeKernel(std::size_t* local_work_size, std::size_t* global_work_size, int work_dim, int num_events_in_wait_list, const cl_event* event_wait_list, cl_event* evt)
 	{
-		_errcode = clEnqueueNDRangeKernel(_command, _kernel, work_dim, NULL, &_global_work_size, NULL, num_events_in_wait_list, event_wait_list, evt);
+		_errcode = clEnqueueNDRangeKernel(_command, _kernel, work_dim, NULL, global_work_size, local_work_size, num_events_in_wait_list, event_wait_list, evt);
 		if (_errcode != CL_SUCCESS)
 		{
 			std::cerr << "ERR: Could not enqueue NDRangeKernel " << _errcode << "\n";
@@ -274,17 +276,6 @@ namespace Rubix
 			_buffers.pop_front();
 		}		
 		_buffers.pop_front();
-	}
-
-
-	void ComputeObject::SetWorkSize_global(int size)
-	{
-		_global_work_size = size;
-	}
-
-	int ComputeObject::GetWorkSize_global()
-	{
-		return _global_work_size;
 	}
 
 	void ComputeObject::CreatePipemem(cl_mem_flags flags, cl_uint packet_size, cl_uint max_packets, const cl_pipe_properties* properties)
