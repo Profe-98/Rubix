@@ -104,71 +104,14 @@ namespace Rubix
 
 	MatrixStorage MatrixStorage::Add_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
 	{
-		if (this->_buffer.empty() || this->_buffer.size() == 0)
-			throw std::invalid_argument("The given matrix is empty");
-		if (scalar == 0.0)
-			return MatrixStorage(this->_buffer, this->_strides, this->_size_logic, this->_rows, this->_cols, this->_offset);
-		std::vector<double> res_buffer(this->_size_phys);
-
-
-		openclcomputeobject->CreateBufferInput(this->_size_phys, this->_buffer.data());
-		openclcomputeobject->CreateBufferOutput(res_buffer.size(), NULL);
-
-		openclcomputeobject->SetKernelArgs();
-		openclcomputeobject->SetKernelArg(2, scalar);
-		openclcomputeobject->SetKernelArg(3, this->_size_phys);
-
-		std::size_t global_work_size[1] = { (std::size_t)this->_size_phys };
-		std::size_t local_work_size[1] = { (std::size_t)2 };
-
-		openclcomputeobject->EnqueueNDRangeKernel(local_work_size, global_work_size, 1, NULL);
-		openclcomputeobject->Finish();
-		openclcomputeobject->EnqueueReadBuffer(1, CL_TRUE, 0, res_buffer.size(), res_buffer.data(), 0, NULL, NULL);
-		openclcomputeobject->ReleaseBuffers();
-		return MatrixStorage(res_buffer, this->_strides, this->_size_logic, this->_rows, this->_cols, this->_offset);
-
+		throw NotImplementedException("The method isn't implented yet!");
+		return MatrixStorage();
 	}
 
 	MatrixStorage MatrixStorage::Add_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
 	{
-		int other_size_logic = other.GetSize_logic();
-		int other_size_phys = other.GetSize_phys();
-		if (this->_buffer.empty() || other.GetBuffer().empty())
-			throw std::invalid_argument("To be additive conformable, both matrices must contain elements!");
-		if (this->_size_logic != other_size_logic)
-			throw std::invalid_argument("To be additive conformable, both matrices must've the same size!");
-		if (this->_rows != other.GetRows() || this->_cols != other.GetCols())
-			throw std::invalid_argument("To be additive conformable, both matrices must've equal amound of rows and columns!");
-
-		std::vector<double> res_buffer(this->_size_phys);
-		//(this->_size_phys < other._size_phys) ? res_buffer.resize(other._size_phys) : res_buffer.resize(this->_size_phys);
-
-		openclcomputeobject->CreateBufferInput(this->_size_phys, this->_buffer.data());
-		openclcomputeobject->CreateBufferInput(other_size_phys, other._buffer.data());
-		openclcomputeobject->CreateBufferOutput(res_buffer.size(), NULL);
-
-		openclcomputeobject->SetKernelArgs();
-		openclcomputeobject->SetKernelArg(3, this->_rows);
-		openclcomputeobject->SetKernelArg(4, this->_cols);
-		openclcomputeobject->SetKernelArg(5, this->_strides[0]);
-		openclcomputeobject->SetKernelArg(6, this->_strides[1]);
-		openclcomputeobject->SetKernelArg(7, other.GetStrides()[0]);
-		openclcomputeobject->SetKernelArg(8, other.GetStrides()[1]);
-		openclcomputeobject->SetKernelArg(9, this->_size_phys);
-		openclcomputeobject->SetKernelArg(10, other_size_phys);
-
-		std::size_t global_work_size[1] = { (std::size_t)this->_size_logic }; // std::size_t global_work_size[2] = { (std::size_t)this->_rows, (std::size_t)this->_cols };
-		std::size_t local_work_size[1] = { (std::size_t)2 };
-
-		openclcomputeobject->EnqueueNDRangeKernel(local_work_size, global_work_size, 1, NULL);
-		openclcomputeobject->Finish();
-		openclcomputeobject->EnqueueReadBuffer(1, CL_TRUE, 0, res_buffer.size(), res_buffer.data(), 0, NULL, NULL);
-		openclcomputeobject->ReleaseBuffers();
-		for (auto& r : res_buffer)
-			std::cout << r << "\n";
-		std::cout << "\n";
-		return MatrixStorage(res_buffer, this->_strides, this->_size_logic, this->_rows, this->_cols, this->_offset);
-
+		throw NotImplementedException("The method isn't implented yet!");
+		return MatrixStorage();
 	}
 
 	MatrixStorage MatrixStorage::Add_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)

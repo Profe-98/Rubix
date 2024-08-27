@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CLManager.cpp" />
+    <ClCompile Include="DirectCompute_Manager.cpp" />
     <ClCompile Include="Compute_Object.cpp" />
     <ClCompile Include="Dtype.cpp" />
     <ClCompile Include="Exceptions.cpp" />
@@ -34,7 +34,7 @@
     <ClCompile Include="ThreadWrap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CLManager.h" />
+    <ClInclude Include="DirectCompute_Manager.h" />
     <ClInclude Include="Compute_Object.h" />
     <ClInclude Include="Dtype.h" />
     <ClInclude Include="Exceptions.h" />
@@ -45,12 +45,6 @@
     <ClInclude Include="RubixMain.h" />
     <ClInclude Include="Tensor.h" />
     <ClInclude Include="ThreadWrap.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Matrix_Add_Kernels.cl" />
-    <None Include="Matrix_Div_Kernels.cl" />
-    <None Include="Matrix_Mult_Kernels.cl" />
-    <None Include="Matrix_Subtr_Kernels.cl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

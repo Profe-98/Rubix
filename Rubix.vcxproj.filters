@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CLManager.cpp">
+    <ClCompile Include="DirectCompute_Manager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Compute_Object.cpp">
@@ -50,7 +50,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CLManager.h">
+    <ClInclude Include="DirectCompute_Manager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Compute_Object.h">
@@ -83,12 +83,6 @@
     <ClInclude Include="Exceptions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Matrix_Add_Kernels.cl" />
-    <None Include="Matrix_Div_Kernels.cl" />
-    <None Include="Matrix_Mult_Kernels.cl" />
-    <None Include="Matrix_Subtr_Kernels.cl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
