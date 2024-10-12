@@ -22,137 +22,27 @@ namespace Rubix
 		inline static bool _devmode = true;
 
 		//we will  refactor this, but that's ok for now.
-		static std::string PrepLogMSG(std::string& description, std::string& srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO)
-		{
-			std::string res;
-			std::string descrpt = "Description: ";
-			std::string src = "Source file: ";
-			std::string clss = "Class: ";
-			std::string mthd = "Method: ";
-			std::string ln = "Line: ";
-			switch (lvl)
-			{
-			case LOG_LVL::INFO:
-				res = "INFO:\n" + descrpt + description + src + srcfile + clss + class_ + mthd + method + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::WARNING:
-				res = "WARNING:\n" + descrpt + description + src + srcfile + clss + class_ + mthd + method + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::ERR:
-				res = "ERROR:\n" + descrpt + description + src + srcfile + clss + class_ + mthd + method + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::FATAL_ERROR:
-				res = "FATAL ERROR:\n" + descrpt + description + src + srcfile + clss + class_ + mthd + method + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::EXCEPTION:
-				res = "EXCEPTION:\n" + descrpt + description + src + srcfile + clss + class_ + mthd + method + ln + std::to_string(line);
-				return res;
-			}
-		}
+		static std::string PrepLogMSG(std::string& description, std::string& srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO);
 
-		//Won't be calles at Exceptions and therefore won't log Exceptions.
-		static std::string PrepLogMSG(std::string& description, std::string& srcfile, int line, LOG_LVL lvl = LOG_LVL::INFO)
-		{
-			std::string res;
-			std::string descrpt = "Description: ";
-			std::string src = "Source file: ";
-			std::string ln = "Line: ";
-			switch (lvl)
-			{
-			case LOG_LVL::INFO:
-				res = "INFO:\n" + descrpt + description + src + srcfile + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::WARNING:
-				res = "WARNING:\n" + descrpt + description + src + srcfile + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::ERR:
-				res = "ERROR:\n" + descrpt + description + src + srcfile + ln + std::to_string(line);
-				return res;
-			case LOG_LVL::FATAL_ERROR:
-				res = "FATAL ERROR:\n" + descrpt + description + src + srcfile + ln + std::to_string(line);
-				return res;
-			}
-		}
+		//Won't be called at Exceptions and therefore won't log Exceptions.
+		static std::string PrepLogMSG(std::string& description, std::string& srcfile, int line, LOG_LVL lvl = LOG_LVL::INFO);
 
-		static int setConsole_Color(LOG_LVL lvl)
-		{
-			if (lvl == LOG_LVL::INFO)
-				return 10;
-			if (lvl == LOG_LVL::WARNING)
-				return 14;
-			if (lvl == LOG_LVL::ERR)
-				return 22;
-			if (lvl == LOG_LVL::FATAL_ERROR)
-				return 20;
-			if (lvl == LOG_LVL::EXCEPTION)
-				return 4;
-		}
+		static int setConsole_Color(LOG_LVL lvl);
 
 	public:
-		static void LogToFile(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO)
-		{
-			std::string msg;
-			std::ofstream strm(_path);
-			if (_devmode == false && lvl != LOG_LVL::EXCEPTION)
-			{
-				msg = PrepLogMSG(description, srcfile, line, lvl);
-				strm << msg;
-				return;
-			}
-			msg = PrepLogMSG(description, srcfile, class_, method, line, lvl);
-			strm << msg;
-		}
+		static void LogToFile(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO);
 
-		static void LogToConsole(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO)
-		{
-			HANDLE console;
-			console = GetStdHandle(STD_OUTPUT_HANDLE);
-			int col = setConsole_Color(lvl);
-			std::string msg;
-			SetConsoleTextAttribute(console, col);
-			if (_devmode == false && lvl != LOG_LVL::EXCEPTION)
-			{
-				msg = PrepLogMSG(description, srcfile, line, lvl);
-				std::cout << msg;
-				return;
-			}
-			msg = PrepLogMSG(description, srcfile, class_, method, line, lvl);
-			std::cout << msg;
-			return;
-		}
+		static void LogToConsole(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO);
 
-		static std::string EchoLog(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO)
-		{
-			std::string msg;
-			if (_devmode == false && lvl != LOG_LVL::EXCEPTION)
-			{
-				msg = PrepLogMSG(description, srcfile, line, lvl);
-				return msg;
+		static std::string EchoLog(std::string& description, std::string srcfile, std::string& class_, std::string& method, int line, LOG_LVL lvl = LOG_LVL::INFO);
 
-			}
-			msg = PrepLogMSG(description, srcfile, class_, method, line, lvl);
-			return msg;
-		}
-
-		static void SetDevmodeTo(bool devmode)
-		{
-			_devmode = devmode;
-		}
+		static void SetDevmodeTo(bool devmode);
 		
-		static bool GetDevmode()
-		{
-			return _devmode;
-		}
+		static bool GetDevmode();
 
-		static void SetLogFilePath(std::string path)
-		{
-			_path = path;
-		}
+		static void SetLogFilePath(std::string path);
 
-		static std::string GetLogFilePath()
-		{
-			return _path;
-		}
+		static std::string GetLogFilePath();
 	};
 }
 
