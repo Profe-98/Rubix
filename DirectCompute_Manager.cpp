@@ -1,29 +1,23 @@
-#pragma once
-#include <stdint.h>
+#include <vector>
+#include <memory>
 #include <string>
+#include <iostream>
+#include <deque>
+#include <thread>
+#include <stdint.h>
 #include <ctime>
 #include <regex>
 #include <cmath>
 #include <fstream>
-#include <vector>
 #include <typeinfo>
 #include <random>
-#include <memory>
 #include <initializer_list>
 #include <map>
+#include "DirectCompute_Manager.h"
 #include "Matrix.h"
 #include "Dtype.h"
-//#include "Rubix_Main.h" 
+#include "Compute_Object.h"
 namespace Rubix
 {
-	/// <summary>
-	/// ...
-	/// </summary>
-	class Ops_Matrix
-	{
-	private:
-	public:
-	};
-
 
 }
