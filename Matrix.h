@@ -197,8 +197,6 @@ namespace Rubix
 
 		bool operator !=(Matrix& other);
 
-	
-
 		friend std::ostream& operator<<(std::ostream& os, Matrix& m)
 		{
 			return os;
