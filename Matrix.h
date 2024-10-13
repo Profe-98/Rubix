@@ -72,35 +72,132 @@ namespace Rubix
 
 		std::string GetDType();
 
+		/// <summary>
+		/// Adds all values on the main diagonal (where the row index = the column index) of the matrix up and returns the result
+		/// </summary>
+		/// <returns>Value of type T</returns>
 		double Trace();
 
-		std::unique_ptr<Matrix> Add_Scalar();
-		std::unique_ptr<Matrix> Add_Matrix();
-		void Add_Eq_Scalar();
-		void Add_Eq_Matrix();
-		std::unique_ptr<Matrix> Subtr_Scalar();
-		std::unique_ptr<Matrix> Subtr_Matrix();
-		void Subtr_Eq_Scalar();
-		void Subtr_Eq_Matrix();
-		std::unique_ptr<Matrix> Mult_Scalar();
-		std::unique_ptr<Matrix> Mult_Matrix();
-		void Mult_Eq_Scalar();
-		void Mult_Eq_Matrix();
-		std::unique_ptr<Matrix> Div_Scalar();
-		std::unique_ptr<Matrix> Div_Matrix();
-		void Div_Eq_Scalar();
-		void Div_Eq_Matrix();
+		/// <summary>
+		/// This operator is used to access a single element / entry in the matrix 
+		/// </summary>
+		/// <param name="m"> The index for the row in which our target is stored.</param>
+		/// <param name="n"> The index for the column in which our target is stored.</param>
+		/// <returns>The entry - of type T - that is stored at position (m * columns + n) in the matrix.</returns>
+		double operator() (int m, int n);
+	
+		/// <summary>
+		/// Matrix addition with another mnatrix, according to the definition of matrix addition.
+		/// </summary>
+		/// <param name="other"> The right side operand</param>
+		/// <returns>The - from the addition - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator +(Matrix& other);
+		
+		/// <summary>
+		/// Matrix addition with a scalar value, according to the definition of matrix addition.
+		/// </summary>
+		/// <param name="scalar">The right side operand</param>
+		/// <returns>The - from the addition - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator +(double scalar);
 
-		void* operator new(std::size_t s)
-		{
-			void* p = malloc(s);
-			return p;
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		Matrix& operator +=(Matrix& other);
 
-		void operator delete(void* p)
-		{
-			free(p);
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="scalar"></param>
+		/// <returns></returns>
+		Matrix& operator +=(double scalar);
+
+		/// <summary>
+		/// Matrix subtraction with another matrix, according to the definition of matrix subtraction.
+		/// </summary>
+		/// <param name="other">The right side operand</param>
+		/// <returns>The - from the subtraction - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator -(Matrix& other);
+
+		/// <summary>
+		/// Matrix subtraction with a scalar value, according to the definition of matrix subtraction.
+		/// </summary>
+		/// <param name="scalar">The right side operand</param>
+		/// <returns>The - from the subtraction - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator -(double scalar);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		Matrix& operator -=(Matrix& other);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="scalar"></param>
+		/// <returns></returns>
+		Matrix& operator -=(double scalar);
+
+		/// <summary>
+		/// Matrix multiplication with another matrix, according to the definition of matrix multiplication.
+		/// </summary>
+		/// <param name="other">The right side operand</param>
+		/// <returns>The - from the multiplication - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator *(Matrix& other);
+
+		/// <summary>
+		/// Matrix multiplication with a scalar value, according to the definition of matrix multiplication.
+		/// </summary>
+		/// <param name="scalar">The right side operand</param>
+		/// <returns>The - from the multiplication - resulting matrix packed in std::unique_ptr</returns>
+		std::unique_ptr<Matrix> operator *(double scalar);
+
+		Matrix& operator *=(Matrix& other);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="scalar"></param>
+		/// <returns></returns>
+		Matrix& operator *=(double scalar);
+
+		/// <summary>
+		/// Inversed multiplication...
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		std::unique_ptr<Matrix> operator /(Matrix& other);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="scalar"></param>
+		/// <returns></returns>
+		std::unique_ptr<Matrix> operator /(double scalar);
+
+		/// <summary>
+		/// Inversed multiplication...
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		Matrix& operator /=(Matrix& other);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="scalar"></param>
+		/// <returns></returns>
+		Matrix& operator /=(double scalar);
+
+		bool operator ==(Matrix& other);
+
+		bool operator !=(Matrix& other);
+
+	
 
 		friend std::ostream& operator<<(std::ostream& os, Matrix& m)
 		{

@@ -1,5 +1,4 @@
 #include "Matrix.h"
-#include "Exceptions.h"
 
 namespace Rubix
 {
@@ -9,7 +8,7 @@ namespace Rubix
 		this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor = true) : _name{ name }
+	Matrix::Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor) : _name{ name }
 	{
 		std::vector<int> strides;
 		if (rowmajor)
@@ -29,15 +28,12 @@ namespace Rubix
 		std::cout << _name << ": Matrix d'tor called.\n";
 	}
 
-
-	//copy ctor
 	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name), _mutable(m._mutable)
 	{
 
 	}
 
-	//copy assignment
-	Matrix& Matrix::operator =(const Matrix& m)
+	Matrix& Matrix::operator=(const Matrix& m)
 	{
 		if (this != &m)
 		{
@@ -48,14 +44,12 @@ namespace Rubix
 		return *this;
 	}
 
-	//move c'tor
 	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name), _mutable(m._mutable)
 	{
 
 	}
 
-	//move assignment
-	Matrix& Matrix::operator =(Matrix&& m) noexcept
+	Matrix& Matrix::operator=(Matrix&& m) noexcept
 	{
 		if (this != &m)
 		{
@@ -136,12 +130,7 @@ namespace Rubix
 		return "double"; // temporary
 	}
 
-	/// <summary>
-	/// Adds all values on the main diagonal (where the row index = the column index) of the matrix up and returns the result
-	/// </summary>
-	/// <returns>Value of type T</returns>
-	double Matrix::Trace()
-	{
+	double Matrix::Trace() {
 		//auto t0 = steady_clock::now();
 
 		int r = this->Getrows();
@@ -168,94 +157,122 @@ namespace Rubix
 		return res;
 	}
 
-	std::unique_ptr<Matrix> Matrix::Add_Scalar()
+	double Matrix::operator()(int m, int n)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		if (m >= this->Getrows() || n >= this->Getcols())
+			throw std::out_of_range("Matrix indices out of range!");
+
+		return this->GetEntries()[m * this->Getcols() + n];
+
+	}
+
+	std::unique_ptr<Matrix> Matrix::operator+(Matrix& other)
+	{
 		return std::unique_ptr<Matrix>();
 	}
 
-	std::unique_ptr<Matrix> Matrix::Add_Matrix()
+	std::unique_ptr<Matrix> Matrix::operator+(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	void Matrix::Add_Eq_Scalar()
+	Matrix& Matrix::operator+=(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
-
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	void Matrix::Add_Eq_Matrix()
+	Matrix& Matrix::operator+=(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-
-	std::unique_ptr<Matrix> Matrix::Subtr_Scalar()
+	std::unique_ptr<Matrix> Matrix::operator-(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	std::unique_ptr<Matrix> Matrix::Subtr_Matrix()
+	std::unique_ptr<Matrix> Matrix::operator-(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	void Matrix::Subtr_Eq_Scalar()
+	Matrix& Matrix::operator-=(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	void Matrix::Subtr_Eq_Matrix()
+	Matrix& Matrix::operator-=(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	std::unique_ptr<Matrix> Matrix::Mult_Scalar()
+	std::unique_ptr<Matrix> Matrix::operator*(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	std::unique_ptr<Matrix> Matrix::Mult_Matrix()
+	std::unique_ptr<Matrix> Matrix::operator*(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	void Matrix::Mult_Eq_Scalar()
+	Matrix& Matrix::operator*=(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	void Matrix::Mult_Eq_Matrix()
+	Matrix& Matrix::operator*=(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	std::unique_ptr<Matrix> Matrix::Div_Scalar()
+	std::unique_ptr<Matrix> Matrix::operator/(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	std::unique_ptr<Matrix> Matrix::Div_Matrix()
+	std::unique_ptr<Matrix> Matrix::operator/(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
 		return std::unique_ptr<Matrix>();
 	}
 
-	void Matrix::Div_Eq_Scalar()
+	Matrix& Matrix::operator/=(Matrix& other)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
 	}
 
-	void Matrix::Div_Eq_Matrix()
+	Matrix& Matrix::operator/=(double scalar)
 	{
-		throw NotImplementedException("The method isn't implented yet!");
+		// TODO: hier return-Anweisung eingeben
+	}
+
+	bool Matrix::operator==(Matrix& other)
+	{
+		if (this->Getrows() != other.Getrows() || this->Getcols() != other.Getcols() || this->size_physical_b() != other.size_physical_b() || this->Getstrides() != other.Getstrides())
+			return false;
+
+		int s = this->size_logical();
+		for (int i = 0; i < s; ++i)
+		{
+			if (this->GetEntries()[i] != other.GetEntries()[i])
+				return false;
+		}
+
+		return true;
+	}
+
+	bool Matrix::operator!=(Matrix& other)
+	{
+		if (this->Getrows() != other.Getrows() || this->Getcols() != other.Getcols() || this->size_physical_b() != other.size_physical_b() || this->Getstrides() != other.Getstrides())
+			return true;
+
+		for (int i = 0; i < this->size_logical(); ++i)
+		{
+			if (this->GetEntries()[i] != other.GetEntries()[i])
+				return true;
+		}
+
+		return false;
 	}
 
 }
