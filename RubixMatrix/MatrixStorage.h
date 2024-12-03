@@ -7,7 +7,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "Compute_Object.h"
+#include "../RubixDXCompute/Compute_Object.h"
+#include "../RubixLogSys/Exceptions.h"
 namespace Rubix
 {
 	class MatrixStorage

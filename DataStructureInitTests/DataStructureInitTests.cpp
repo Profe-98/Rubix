@@ -1,19 +1,20 @@
 #define BOOST_TEST_MAIN test_ctors_main
-#include <boost/test/included/unit_test.hpp>
-#include <boost/test/test_tools.hpp>
+#include "../boost_1_85_0/boost/test/unit_test.hpp"
+#include "../boost_1_85_0/boost/test/test_tools.hpp"
 
 //arrange
 
 #include <iostream>
 
-#include "RubixMain.h"
-#include "Matrix.h"
+#include "../RubixMain.h"
+#include "../RubixMatrix/Matrix.h"
 using namespace Rubix;
 
+//TODO: Set up this Unit test with boost 
 namespace
 {
 	using namespace boost::unit_test;
-	BOOST_AUTO_TEST_CASE(test_matrix_addition_)
+	int BOOST_AUTO_TEST_CASE(test_ctors_main)
 	{
 		int res = RubixMain::Prepare_Library();
 		BOOST_CHECK(res == 1);
@@ -30,8 +31,8 @@ namespace
 		//std::cout << "[" << m0->Getstrides()[0] << ", " << m0->Getstrides()[1] << "]\n";
 		//std::cout << "[" << m2->Getstrides()[0] << ", " << m2->Getstrides()[1] << "]\n";/**/
 		int s = v0.size();
-		
-		
+
+
 		/**for (int i = 0; i < s; ++i)
 		{
 			std::cout << m1->GetEntries()[i] << "\n";

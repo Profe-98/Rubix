@@ -14,9 +14,6 @@
 #include <initializer_list>
 #include <map>
 #include "DirectCompute_Manager.h"
-#include "Matrix.h"
-#include "Dtype.h"
-#include "Compute_Object.h"
 namespace Rubix
 {
 

@@ -1,9 +1,7 @@
-#define __CL_ENABLE_EXCEPTIONS // must be defined before OpenCL header files are included
 #include "MatrixStorage.h"
-#include "Compute_Object.h"
-#include "Exceptions.h"
 namespace Rubix 
 {
+
 	//Default c'tor
 	MatrixStorage::MatrixStorage()
 	{
