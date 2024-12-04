@@ -99,97 +99,97 @@ namespace Rubix
 
 	}
 
-	MatrixStorage MatrixStorage::Add_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Add_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Add_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Add_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Add_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Add_Eq_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Add_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Add_Eq_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Subtr_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Subtr_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Subtr_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Subtr_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Subtr_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Subtr_Eq_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Subtr_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Subtr_Eq_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Mult_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Mult_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Mult_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Mult_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Mult_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Mult_Eq_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Mult_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Mult_Eq_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Div_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Div_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Div_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Div_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Div_Eq_Scalar(double scalar, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Div_Eq_Scalar(double scalar)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
 	}
 
-	MatrixStorage MatrixStorage::Div_Eq_Matrix(MatrixStorage other, std::unique_ptr<ComputeObject> openclcomputeobject)
+	MatrixStorage MatrixStorage::Div_Eq_Matrix(MatrixStorage other)
 	{
 		throw NotImplementedException("The method isn't implented yet!");
 		return MatrixStorage();
