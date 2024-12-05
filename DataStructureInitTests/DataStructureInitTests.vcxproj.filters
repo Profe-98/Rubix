@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Matrix_Add.cpp">
+    <ClCompile Include="DataStructureInitTests.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

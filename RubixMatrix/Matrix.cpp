@@ -75,6 +75,11 @@ namespace Rubix
 		return this->size_physical() > this->size_logical();
 	}
 
+	bool Matrix::IsCompressed()
+	{
+		return this->size_physical() < this->size_logical();
+	}
+
 	bool Matrix::IsSquared()
 	{
 		return this->Getrows() == this->Getcols();
@@ -164,86 +169,6 @@ namespace Rubix
 
 		return this->GetEntries()[m * this->Getcols() + n];
 
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator+(Matrix& other)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator+(double scalar)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	Matrix& Matrix::operator+=(Matrix& other)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	Matrix& Matrix::operator+=(double scalar)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator-(Matrix& other)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator-(double scalar)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	Matrix& Matrix::operator-=(Matrix& other)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	Matrix& Matrix::operator-=(double scalar)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator*(Matrix& other)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator*(double scalar)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	Matrix& Matrix::operator*=(Matrix& other)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	Matrix& Matrix::operator*=(double scalar)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator/(Matrix& other)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	std::unique_ptr<Matrix> Matrix::operator/(double scalar)
-	{
-		return std::unique_ptr<Matrix>();
-	}
-
-	Matrix& Matrix::operator/=(Matrix& other)
-	{
-		// TODO: hier return-Anweisung eingeben
-	}
-
-	Matrix& Matrix::operator/=(double scalar)
-	{
-		// TODO: hier return-Anweisung eingeben
 	}
 
 	bool Matrix::operator==(Matrix& other)

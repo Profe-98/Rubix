@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <stdint.h>
 #include <string>
 #include <ctime>
@@ -6,24 +7,19 @@
 #include <cmath>
 #include <fstream>
 #include <vector>
+#include <utility>
 #include <typeinfo>
 #include <random>
 #include <memory>
 #include <initializer_list>
 #include <map>
-#include "Matrix.h"
-#include "Dtype.h"
-//#include "Rubix_Main.h" 
+#include "../RubixMatrix/Matrix.h"
+#include "../RubixMatrix/Dtype.h"
 namespace Rubix
 {
-	/// <summary>
-	/// ...
-	/// </summary>
-	class Ops_Matrix
+
+	class DirectCompute_Manager
 	{
-	private:
-	public:
+
 	};
-
-
 }

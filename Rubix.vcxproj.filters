@@ -13,78 +13,127 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="RubixShaders">
+      <UniqueIdentifier>{ccd6663e-2a6a-4f49-85bf-fd75b7d9452c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RubixShaders\MatrixOperations">
+      <UniqueIdentifier>{2dcb93f7-1f35-4182-b195-cf1653366ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RubixShaders\TensorOperations">
+      <UniqueIdentifier>{e0c224db-8843-4cbf-b820-b87debac7806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\HeaderDXCompute">
+      <UniqueIdentifier>{3f191105-37fc-42a3-97d9-6af74fb01843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\HeaderLogSys">
+      <UniqueIdentifier>{2282f970-cc7e-4b2e-b816-6a922b7b8864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\HeaderMatrix">
+      <UniqueIdentifier>{1e5d9bde-fded-4da3-a0a9-61f8ef4dda91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\HeaderTensor">
+      <UniqueIdentifier>{c39aea16-5ddf-435f-a318-f34978ade4c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\SourceDXCompute">
+      <UniqueIdentifier>{3d2f0689-2bfc-464f-b6b7-2d5aecf73137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\SourceLogSys">
+      <UniqueIdentifier>{00d8e3e9-72e1-4d24-b2b6-c6952cc9edd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\SourceMatrix">
+      <UniqueIdentifier>{70f950df-a93f-449f-b6a5-84a31730a3ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\SourceTensor">
+      <UniqueIdentifier>{2465b0bc-9c40-4876-80fc-77ec7a9f34f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DirectCompute_Manager.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Compute_Object.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Dtype.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="LogHandler.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixStorage.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Ops_Matrix.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="RubixMain.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Tensor.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="RubixTensor\Tensor.cpp">
+      <Filter>Quelldateien\SourceTensor</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadWrap.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="RubixMatrix\Dtype.cpp">
+      <Filter>Quelldateien\SourceMatrix</Filter>
     </ClCompile>
-    <ClCompile Include="Exceptions.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="RubixMatrix\Matrix.cpp">
+      <Filter>Quelldateien\SourceMatrix</Filter>
+    </ClCompile>
+    <ClCompile Include="RubixMatrix\MatrixStorage.cpp">
+      <Filter>Quelldateien\SourceMatrix</Filter>
+    </ClCompile>
+    <ClCompile Include="RubixLogSys\Exceptions.cpp">
+      <Filter>Quelldateien\SourceLogSys</Filter>
+    </ClCompile>
+    <ClCompile Include="RubixLogSys\LogHandler.cpp">
+      <Filter>Quelldateien\SourceLogSys</Filter>
+    </ClCompile>
+    <ClCompile Include="RubixDXCompute\DirectCompute_Manager.cpp">
+      <Filter>Quelldateien\SourceDXCompute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DirectCompute_Manager.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Compute_Object.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Dtype.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="LogHandler.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixStorage.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Ops_Matrix.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="RubixMain.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Tensor.h">
-      <Filter>Headerdateien</Filter>
+    <ClInclude Include="RubixDXCompute\DirectCompute_Manager.h">
+      <Filter>Headerdateien\HeaderDXCompute</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadWrap.h">
-      <Filter>Headerdateien</Filter>
+    <ClInclude Include="RubixLogSys\Exceptions.h">
+      <Filter>Headerdateien\HeaderLogSys</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions.h">
+    <ClInclude Include="RubixLogSys\LogHandler.h">
+      <Filter>Headerdateien\HeaderLogSys</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixMatrix\Dtype.h">
+      <Filter>Headerdateien\HeaderMatrix</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixMatrix\Matrix.h">
+      <Filter>Headerdateien\HeaderMatrix</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixMatrix\MatrixStorage.h">
+      <Filter>Headerdateien\HeaderMatrix</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixTensor\Tensor.h">
+      <Filter>Headerdateien\HeaderTensor</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="RubixShaders\MatrixOperations\MatrixAdd.hlsl">
+      <Filter>RubixShaders\MatrixOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\MatrixOperations\MatrixSubtr.hlsl">
+      <Filter>RubixShaders\MatrixOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\MatrixOperations\MatrixMult.hlsl">
+      <Filter>RubixShaders\MatrixOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\MatrixOperations\MatrixDiv.hlsl">
+      <Filter>RubixShaders\MatrixOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\TensorOperations\TensorAdd.hlsl">
+      <Filter>RubixShaders\TensorOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\TensorOperations\TensorSubtr.hlsl">
+      <Filter>RubixShaders\TensorOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\TensorOperations\TensorMult.hlsl">
+      <Filter>RubixShaders\TensorOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\TensorOperations\TensorDiv.hlsl">
+      <Filter>RubixShaders\TensorOperations</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rubix.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
