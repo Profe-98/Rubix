@@ -50,6 +50,8 @@ namespace Rubix
 
 		bool IsPadded();
 
+		bool IsCompressed();
+
 		bool IsSquared();
 
 		std::string Getname();

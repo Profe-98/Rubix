@@ -75,6 +75,11 @@ namespace Rubix
 		return this->size_physical() > this->size_logical();
 	}
 
+	bool Matrix::IsCompressed()
+	{
+		return this->size_physical() < this->size_logical();
+	}
+
 	bool Matrix::IsSquared()
 	{
 		return this->Getrows() == this->Getcols();
