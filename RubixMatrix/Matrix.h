@@ -57,8 +57,10 @@ namespace Rubix
 
 		bool Is_resizable() const;
 
+		__declspec(deprecated("Not  implemented!"))
 		void make_mutable() const;
 
+		__declspec(deprecated("Not  implemented!"))
 		void make_resizable() const;
 
 		std::string Getname() const;
@@ -81,10 +83,8 @@ namespace Rubix
 
 		std::string GetDType() const;
 
-		/// <summary>
-		/// Adds all values on the main diagonal (where the row index = the column index) of the matrix up and returns the result
-		/// </summary>
-		/// <returns>Value of type T</returns>
+
+		__declspec(deprecated("Not fully implemented/experimental. Will lead to fatal error!"))
 		double Trace();
 
 		/// <summary>
@@ -99,6 +99,7 @@ namespace Rubix
 
 		bool operator !=(Matrix& other);
 
+		__declspec(deprecated("Not fully implemented!"))
 		friend std::ostream& operator<<(std::ostream& os, Matrix& m)
 		{
 			return os;

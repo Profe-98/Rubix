@@ -59,6 +59,9 @@ namespace
 
 		BOOST_CHECK(m2->IsCompressed() == true);
 
+		BOOST_CHECK(m0->Is_mutable() == true);
+		BOOST_CHECK(m0->Is_resizable() == false);
+
 		//TODO: make trace method compatible with 'compressed' matrices
 		//BOOST_CHECK(m2->Trace() == 8);
 

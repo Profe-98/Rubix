@@ -85,12 +85,12 @@ namespace Rubix
 
 	bool Matrix::Is_mutable() const
 	{
-		return false;
+		return _storage.Is_mutable();
 	}
 
 	bool Matrix::Is_resizable() const
 	{
-		return false;
+		return _storage.Is_resizable();
 	}
 
 	void Matrix::make_mutable() const

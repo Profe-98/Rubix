@@ -84,11 +84,6 @@ namespace Rubix
 
 	}
 
-	void MatrixStorage::get_device() const
-	{
-
-	}
-
 	void MatrixStorage::resize()
 	{
 
@@ -192,8 +187,6 @@ namespace Rubix
 
 	std::ostream& operator<<(std::ostream& op, MatrixStorage& strg)
 	{
-		// TODO: hier return-Anweisung eingeben
-		throw NotImplementedException("The method isn't implented yet!");
 		return op;
 	}
 
