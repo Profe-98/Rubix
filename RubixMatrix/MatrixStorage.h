@@ -1,5 +1,4 @@
 #pragma once
-#define __CL_ENABLE_EXCEPTIONS // must be defined before OpenCL header files are included
 #include <vector>
 #include <memory>
 #include <cmath>
@@ -9,10 +8,12 @@
 #include "../RubixLogSys/Exceptions.h"
 namespace Rubix
 {
-	class MatrixStorage
+	struct MatrixStorage
 	{
 		private:
 
+		bool _mutable = true;
+		bool _resizable = false;
 		std::vector<double> _buffer;
 		std::pair<uint64_t, uint64_t> _strides;
 		uint64_t _size_phys; // represents the physical size of the matrix.
@@ -27,8 +28,8 @@ namespace Rubix
 		//Default c'tor
 		MatrixStorage();
 
-		MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0);
-		MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0);
+		MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
+		MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 
 		//Rule of 0
 		~MatrixStorage() = default;
@@ -38,35 +39,36 @@ namespace Rubix
 		MatrixStorage& operator =(MatrixStorage&&) = default;
 
 
-		std::vector<double> GetBuffer();
+		std::vector<double> GetBuffer() const;
 
-		std::pair<uint64_t, uint64_t> GetStrides();
+		std::pair<uint64_t, uint64_t> GetStrides() const;
 
-		uint64_t GetSize_logic();
+		uint64_t GetSize_logic() const;
 
-		uint64_t GetSize_phys();
+		uint64_t GetSize_phys() const;
 
-		uint64_t GetSize_phys_b();
+		uint64_t GetSize_phys_b() const;
 
-		uint64_t GetOffset();
+		uint64_t GetOffset() const;
 
-		void GetDevice();
+		void GetDevice() const;
 
-		uint64_t GetRows();
+		uint64_t GetRows() const;
 
-		uint64_t GetCols();
+		uint64_t GetCols() const;
 
-		bool Is_shared();
+		bool Is_shared() const;
 
-		bool Is_mutable();
+		bool Is_mutable() const;
+
+		bool Is_resizable() const;
+
+		void resize();
 
 		void fill();
 
-		uint64_t get_device();
+		void get_device() const;
 
-		bool resizable();
-
-		void resize();
 
 		MatrixStorage Add_Scalar(double scalar);
 		MatrixStorage Add_Matrix(MatrixStorage other);

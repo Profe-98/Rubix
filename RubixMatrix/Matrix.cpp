@@ -2,13 +2,13 @@
 
 namespace Rubix
 {
-	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, double elem) : _name(name)
+	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, double elem, bool _resizable, bool _mutable) : _name(name)
 	{
 		std::pair<uint64_t, uint64_t> strides(0, 0);
 		this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor) : _name{ name }
+	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor, bool _resizable, bool _mutable) : _name{ name }
 	{
 		std::pair<uint64_t, uint64_t> strides;
 		if (rowmajor)
@@ -18,7 +18,7 @@ namespace Rubix
 		this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, MatrixStorage storage) : _name(name), _storage(storage)
+	Matrix::Matrix(std::string name, MatrixStorage storage, bool _resizable, bool _mutable) : _name(name), _storage(storage)
 	{
 
 	}
@@ -28,7 +28,7 @@ namespace Rubix
 		std::cout << _name << ": Matrix d'tor called.\n";
 	}
 
-	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name), _mutable(m._mutable)
+	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name)
 	{
 
 	}
@@ -39,12 +39,11 @@ namespace Rubix
 		{
 			_storage = m._storage;
 			_name = m._name;
-			_mutable = m._mutable;
 		}
 		return *this;
 	}
 
-	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name), _mutable(m._mutable)
+	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name)
 	{
 
 	}
@@ -55,82 +54,99 @@ namespace Rubix
 		{
 			_storage = m._storage;
 			_name = m._name;
-			_mutable = m._mutable;
 		}
 		return *this;
 	}
 
-	bool Matrix::IsEmpty()
+	bool Matrix::IsEmpty() const
 	{
 		return this->size_physical() == 0;
 	}
 
-	bool Matrix::IsPacked()
+	bool Matrix::IsPacked() const
 	{
 		return this->size_physical() == this->size_logical();
 	}
 
-	bool Matrix::IsPadded()
+	bool Matrix::IsPadded() const
 	{
 		return this->size_physical() > this->size_logical();
 	}
 
-	bool Matrix::IsCompressed()
+	bool Matrix::IsCompressed() const
 	{
 		return this->size_physical() < this->size_logical();
 	}
 
-	bool Matrix::IsSquared()
+	bool Matrix::IsSquared() const
 	{
 		return this->Getrows() == this->Getcols();
 	}
 
-	std::string Matrix::Getname()
+	bool Matrix::Is_mutable() const
+	{
+		return false;
+	}
+
+	bool Matrix::Is_resizable() const
+	{
+		return false;
+	}
+
+	void Matrix::make_mutable() const
+	{
+	}
+
+	void Matrix::make_resizable() const
+	{
+	}
+
+	std::string Matrix::Getname() const
 	{
 		return this->_name;
 	}
 
-	uint64_t Matrix::size_logical()
+	uint64_t Matrix::size_logical() const
 	{
 		return this->_storage.GetSize_logic();
 	}
 
-	uint64_t Matrix::size_logical_b()
+	uint64_t Matrix::size_logical_b() const
 	{
 		return this->_storage.GetSize_logic() * sizeof(double);
 	}
 
-	uint64_t Matrix::size_physical()
+	uint64_t Matrix::size_physical() const
 	{
 		return this->_storage.GetSize_phys();
 	}
 
-	uint64_t Matrix::size_physical_b()
+	uint64_t Matrix::size_physical_b() const
 	{
 		return this->_storage.GetSize_phys_b();
 	}
 
-	uint64_t Matrix::Getrows()
+	uint64_t Matrix::Getrows() const
 	{
 		return this->_storage.GetRows();
 	}
 
-	uint64_t Matrix::Getcols()
+	uint64_t Matrix::Getcols() const
 	{
 		return this->_storage.GetCols();
 	}
 
-	std::pair<uint64_t, uint64_t> Matrix::Getstrides()
+	std::pair<uint64_t, uint64_t> Matrix::Getstrides() const
 	{
 		return this->_storage.GetStrides();
 	}
 
-	std::vector<double> Matrix::GetEntries()
+	std::vector<double> Matrix::GetEntries() const
 	{
 		return this->_storage.GetBuffer();
 	}
 
-	std::string Matrix::GetDType()
+	std::string Matrix::GetDType() const
 	{
 		return "double"; // temporary
 	}

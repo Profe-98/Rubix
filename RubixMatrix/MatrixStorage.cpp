@@ -8,70 +8,75 @@ namespace Rubix
 
 	}
 
-	MatrixStorage::MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset) : _buffer(buffer), _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
+	MatrixStorage::MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset, bool _resizable, bool _mutable) : _buffer(buffer), _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset), _resizable(_resizable), _mutable(_mutable)
 	{
 		this->_size_phys = this->_buffer.size();
 	}
 
-	MatrixStorage::MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset) : _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
+	MatrixStorage::MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset, bool _resizable, bool _mutable) : _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset), _resizable(_resizable), _mutable(_mutable)
 	{
 		this->_buffer = std::vector<double>(1, val);
 		this->_size_phys = this->_buffer.size();
 	}
 
-	std::vector<double> MatrixStorage::GetBuffer()
+	std::vector<double> MatrixStorage::GetBuffer() const
 	{
 		return this->_buffer;
 	}
 
-	std::pair<uint64_t, uint64_t> MatrixStorage::GetStrides()
+	std::pair<uint64_t, uint64_t> MatrixStorage::GetStrides() const
 	{
 		return this->_strides;
 	}
 
-	uint64_t MatrixStorage::GetSize_logic()
+	uint64_t MatrixStorage::GetSize_logic() const
 	{
 		return this->_size_logic;
 	}
 
-	uint64_t MatrixStorage::GetSize_phys()
+	uint64_t MatrixStorage::GetSize_phys() const
 	{
 		return this->_size_phys;
 	}
 
-	uint64_t MatrixStorage::GetSize_phys_b()
+	uint64_t MatrixStorage::GetSize_phys_b() const
 	{
 		return sizeof(double) * this->_size_phys;
 	}
 
-	uint64_t MatrixStorage::GetOffset()
+	uint64_t MatrixStorage::GetOffset() const
 	{
 		return this->_offset;
 	}
 
-	void MatrixStorage::GetDevice()
+	void MatrixStorage::GetDevice() const
 	{
 
 	}
 
-	uint64_t MatrixStorage::GetRows()
+	uint64_t MatrixStorage::GetRows() const
 	{
 		return this->_rows;
 	}
 
-	uint64_t MatrixStorage::GetCols()
+	uint64_t MatrixStorage::GetCols() const
 	{
 		return this->_cols;
 	}
 
-	bool MatrixStorage::Is_shared()
+	bool MatrixStorage::Is_shared() const
 	{
 		return false;
 	}
 
-	bool MatrixStorage::Is_mutable()
+	bool MatrixStorage::Is_mutable() const
 	{
-		return false;
+		return _mutable;
+	}
+
+	bool MatrixStorage::Is_resizable() const
+	{
+		return _resizable;
 	}
 
 	void MatrixStorage::fill()
@@ -79,14 +84,9 @@ namespace Rubix
 
 	}
 
-	uint64_t MatrixStorage::get_device()
+	void MatrixStorage::get_device() const
 	{
-		return 0;
-	}
 
-	bool MatrixStorage::resizable()
-	{
-		return false;
 	}
 
 	void MatrixStorage::resize()

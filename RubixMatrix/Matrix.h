@@ -18,16 +18,15 @@ namespace Rubix
 	private:
 		MatrixStorage _storage;
 		std::string _name;
-		bool _mutable = true;
 		
 
 	public:
 
-		Matrix(std::string name, uint64_t rows, uint64_t cols, double elem);
+		Matrix(std::string name, uint64_t rows, uint64_t cols, double elem, bool _resizable = false, bool _mutable = true);
 
-		Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor = true);
+		Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor = true, bool _resizable = false, bool _mutable = true);
 
-		Matrix(std::string name, MatrixStorage storage);
+		Matrix(std::string name, MatrixStorage storage, bool _resizable = false, bool _mutable = true);
 
 		~Matrix() noexcept;
 
@@ -44,35 +43,43 @@ namespace Rubix
 		//move assignment
 		Matrix& operator =(Matrix&& m) noexcept;
 
-		bool IsEmpty();
+		bool IsEmpty() const;
 
-		bool IsPacked();
+		bool IsPacked() const;
 
-		bool IsPadded();
+		bool IsPadded() const;
 
-		bool IsCompressed();
+		bool IsCompressed() const;
 
-		bool IsSquared();
+		bool IsSquared() const;
 
-		std::string Getname();
+		bool Is_mutable() const;
 
-		uint64_t size_logical();
+		bool Is_resizable() const;
+
+		void make_mutable() const;
+
+		void make_resizable() const;
+
+		std::string Getname() const;
+
+		uint64_t size_logical() const;
 		
-		uint64_t size_logical_b();
+		uint64_t size_logical_b() const;
 
-		uint64_t size_physical();
+		uint64_t size_physical() const;
 
-		uint64_t size_physical_b();
+		uint64_t size_physical_b() const;
 
-		uint64_t Getrows();
+		uint64_t Getrows() const;
 
-		uint64_t Getcols();
+		uint64_t Getcols() const;
 
-		std::pair<uint64_t, uint64_t> Getstrides();
+		std::pair<uint64_t, uint64_t> Getstrides() const;
 
-		std::vector<double> GetEntries();
+		std::vector<double> GetEntries() const;
 
-		std::string GetDType();
+		std::string GetDType() const;
 
 		/// <summary>
 		/// Adds all values on the main diagonal (where the row index = the column index) of the matrix up and returns the result
