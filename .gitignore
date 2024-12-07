@@ -364,3 +364,6 @@ FodyWeavers.xsd
 /OpenCL
 /boost_1_85_0
 /boost_1_86_0
+/RubixShaders/MatrixOperations/buffers
+/RubixShaders/MatrixOperations/shaders
+/RubixShaders/MatrixOperations/MatrixOps.sprj
