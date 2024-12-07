@@ -2,15 +2,15 @@
 
 namespace Rubix
 {
-	Matrix::Matrix(std::string name, int rows, int cols, double elem) : _name(name)
+	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, double elem) : _name(name)
 	{
-		std::vector<int> strides(2, 0);
+		std::pair<uint64_t, uint64_t> strides(0, 0);
 		this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, int rows, int cols, std::vector<double> elems, bool rowmajor) : _name{ name }
+	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor) : _name{ name }
 	{
-		std::vector<int> strides;
+		std::pair<uint64_t, uint64_t> strides;
 		if (rowmajor)
 			strides = { 1, cols };
 		else
@@ -90,37 +90,37 @@ namespace Rubix
 		return this->_name;
 	}
 
-	int Matrix::size_logical()
+	uint64_t Matrix::size_logical()
 	{
 		return this->_storage.GetSize_logic();
 	}
 
-	int Matrix::size_logical_b()
+	uint64_t Matrix::size_logical_b()
 	{
 		return this->_storage.GetSize_logic() * sizeof(double);
 	}
 
-	int Matrix::size_physical()
+	uint64_t Matrix::size_physical()
 	{
 		return this->_storage.GetSize_phys();
 	}
 
-	int Matrix::size_physical_b()
+	uint64_t Matrix::size_physical_b()
 	{
 		return this->_storage.GetSize_phys_b();
 	}
 
-	int Matrix::Getrows()
+	uint64_t Matrix::Getrows()
 	{
 		return this->_storage.GetRows();
 	}
 
-	int Matrix::Getcols()
+	uint64_t Matrix::Getcols()
 	{
 		return this->_storage.GetCols();
 	}
 
-	std::vector<int> Matrix::Getstrides()
+	std::pair<uint64_t, uint64_t> Matrix::Getstrides()
 	{
 		return this->_storage.GetStrides();
 	}
@@ -138,8 +138,8 @@ namespace Rubix
 	double Matrix::Trace() {
 		//auto t0 = steady_clock::now();
 
-		int r = this->Getrows();
-		int c = this->Getcols();
+		uint64_t r = this->Getrows();
+		uint64_t c = this->Getcols();
 
 		if (r < 2 || c < 2)
 		{
@@ -148,8 +148,8 @@ namespace Rubix
 		}
 
 		double res = 0;
-		int iter = 0;
-		int m_size = r * c;
+		uint64_t iter = 0;
+		uint64_t m_size = r * c;
 		while (iter < m_size)
 		{
 			res += this->_storage.GetBuffer()[iter];
@@ -162,7 +162,7 @@ namespace Rubix
 		return res;
 	}
 
-	double Matrix::operator()(int m, int n)
+	double Matrix::operator()(uint64_t m, uint64_t n)
 	{
 		if (m >= this->Getrows() || n >= this->Getcols())
 			throw std::out_of_range("Matrix indices out of range!");
@@ -176,8 +176,8 @@ namespace Rubix
 		if (this->Getrows() != other.Getrows() || this->Getcols() != other.Getcols() || this->size_physical_b() != other.size_physical_b() || this->Getstrides() != other.Getstrides())
 			return false;
 
-		int s = this->size_logical();
-		for (int i = 0; i < s; ++i)
+		uint64_t s = this->size_logical();
+		for (uint64_t i = 0; i < s; ++i)
 		{
 			if (this->GetEntries()[i] != other.GetEntries()[i])
 				return false;
@@ -191,7 +191,7 @@ namespace Rubix
 		if (this->Getrows() != other.Getrows() || this->Getcols() != other.Getcols() || this->size_physical_b() != other.size_physical_b() || this->Getstrides() != other.Getstrides())
 			return true;
 
-		for (int i = 0; i < this->size_logical(); ++i)
+		for (uint64_t i = 0; i < this->size_logical(); ++i)
 		{
 			if (this->GetEntries()[i] != other.GetEntries()[i])
 				return true;

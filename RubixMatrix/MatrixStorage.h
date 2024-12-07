@@ -1,6 +1,5 @@
 #pragma once
 #define __CL_ENABLE_EXCEPTIONS // must be defined before OpenCL header files are included
-#include <stdint.h>
 #include <vector>
 #include <memory>
 #include <cmath>
@@ -15,21 +14,21 @@ namespace Rubix
 		private:
 
 		std::vector<double> _buffer;
-		std::vector<int> _strides;
-		int _size_phys; // represents the physical size of the matrix.
-		int _size_logic;
-		int _offset; // Position of the matrix's first element in the buffer. default is always 0
-		int _rows;
-		int _cols;
-		//int _major_Dim = 0; //default 0 = width dimension (row major order); That means one step is needed to get to the next element in that dimension
+		std::pair<uint64_t, uint64_t> _strides;
+		uint64_t _size_phys; // represents the physical size of the matrix.
+		uint64_t _size_logic;
+		uint64_t _offset; // Position of the matrix's first element in the buffer. default is always 0
+		uint64_t _rows;
+		uint64_t _cols;
+		//uint64_t _major_Dim = 0; //default 0 = width dimension (row major order); That means one step is needed to get to the next element in that dimension
 
 		public:
 
 		//Default c'tor
 		MatrixStorage();
 
-		MatrixStorage(std::vector<double> buffer, std::vector<int> strides, int size_logic, int rows, int cols, int offset = 0);
-		MatrixStorage(double val, std::vector<int> strides, int size_logic, int rows, int cols, int offset = 0);
+		MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0);
+		MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0);
 
 		//Rule of 0
 		~MatrixStorage() = default;
@@ -41,23 +40,21 @@ namespace Rubix
 
 		std::vector<double> GetBuffer();
 
-		std::vector<int> GetStrides();
+		std::pair<uint64_t, uint64_t> GetStrides();
 
-		int GetSize_logic();
+		uint64_t GetSize_logic();
 
-		int GetSize_phys();
+		uint64_t GetSize_phys();
 
-		int GetSize_phys_b();
+		uint64_t GetSize_phys_b();
 
-		int GetOffset();
+		uint64_t GetOffset();
 
 		void GetDevice();
 
-		int GetRows();
+		uint64_t GetRows();
 
-		int GetCols();
-
-		void copy();
+		uint64_t GetCols();
 
 		bool Is_shared();
 
@@ -65,7 +62,7 @@ namespace Rubix
 
 		void fill();
 
-		int get_device();
+		uint64_t get_device();
 
 		bool resizable();
 

@@ -15,7 +15,7 @@ namespace Rubix
 	class Dtype
 	{
 		std::string name_;
-		uint16_t physsize_; // logical size in byte of a single value of type T / Dtype.
+		uint64_t physsize_; // logical size in byte of a single value of type T / Dtype.
 
 		public:
 		Dtype()

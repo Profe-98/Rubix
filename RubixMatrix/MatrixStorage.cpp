@@ -8,12 +8,12 @@ namespace Rubix
 
 	}
 
-	MatrixStorage::MatrixStorage(std::vector<double> buffer, std::vector<int> strides, int size_logic, int rows, int cols, int offset) : _buffer(buffer), _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
+	MatrixStorage::MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset) : _buffer(buffer), _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
 	{
 		this->_size_phys = this->_buffer.size();
 	}
 
-	MatrixStorage::MatrixStorage(double val, std::vector<int> strides, int size_logic, int rows, int cols, int offset) : _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
+	MatrixStorage::MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset) : _strides(strides), _size_logic(size_logic), _rows(rows), _cols(cols), _offset(offset)
 	{
 		this->_buffer = std::vector<double>(1, val);
 		this->_size_phys = this->_buffer.size();
@@ -24,27 +24,27 @@ namespace Rubix
 		return this->_buffer;
 	}
 
-	std::vector<int> MatrixStorage::GetStrides()
+	std::pair<uint64_t, uint64_t> MatrixStorage::GetStrides()
 	{
 		return this->_strides;
 	}
 
-	int MatrixStorage::GetSize_logic()
+	uint64_t MatrixStorage::GetSize_logic()
 	{
 		return this->_size_logic;
 	}
 
-	int MatrixStorage::GetSize_phys()
+	uint64_t MatrixStorage::GetSize_phys()
 	{
 		return this->_size_phys;
 	}
 
-	int MatrixStorage::GetSize_phys_b()
+	uint64_t MatrixStorage::GetSize_phys_b()
 	{
 		return sizeof(double) * this->_size_phys;
 	}
 
-	int MatrixStorage::GetOffset()
+	uint64_t MatrixStorage::GetOffset()
 	{
 		return this->_offset;
 	}
@@ -54,19 +54,14 @@ namespace Rubix
 
 	}
 
-	int MatrixStorage::GetRows()
+	uint64_t MatrixStorage::GetRows()
 	{
 		return this->_rows;
 	}
 
-	int MatrixStorage::GetCols()
+	uint64_t MatrixStorage::GetCols()
 	{
 		return this->_cols;
-	}
-
-	void MatrixStorage::copy()
-	{
-
 	}
 
 	bool MatrixStorage::Is_shared()
@@ -84,7 +79,7 @@ namespace Rubix
 
 	}
 
-	int MatrixStorage::get_device()
+	uint64_t MatrixStorage::get_device()
 	{
 		return 0;
 	}

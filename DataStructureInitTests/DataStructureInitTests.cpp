@@ -40,8 +40,8 @@ namespace
 		BOOST_CHECK(m0->Getname() == "m0");
 		BOOST_CHECK(m0->Getname() != "m1");
 
-		BOOST_CHECK(m0->Getstrides()[0] == 1);
-		BOOST_CHECK(m0->Getstrides()[1] == 5);
+		BOOST_CHECK(m0->Getstrides().first == 1);
+		BOOST_CHECK(m0->Getstrides().second == 5);
 
 	    BOOST_CHECK(m1->IsEmpty() == false);
 
