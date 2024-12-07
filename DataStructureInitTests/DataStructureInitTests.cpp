@@ -2,9 +2,9 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_tools.hpp>
-//arrange
 
 #include <iostream>
+#include <utility>
 
 #include "../RubixMain.h"
 #include "../RubixMatrix/Matrix.h"
@@ -33,6 +33,9 @@ namespace
 		BOOST_CHECK(m0 != m1);
 		BOOST_CHECK(m2cpy->Getname() == m2->Getname() && m2cpy->IsSquared() && m2cpy->IsPacked() == false && m2cpy->size_physical() == 1);
 
+		std::unique_ptr<Matrix> m2mov = std::make_unique<Matrix>(std::move(*m2cpy));
+
+		BOOST_CHECK(m2mov->Getname() == m2cpy->Getname() && m2mov->IsSquared());
 		
 		BOOST_CHECK(m0->Getcols() == 5);
 		BOOST_CHECK(m0->Getrows() == 2);
@@ -65,6 +68,6 @@ namespace
 		//TODO: make trace method compatible with 'compressed' matrices
 		//BOOST_CHECK(m2->Trace() == 8);
 
-		//add other operator and c'tor tests l8...
+		//TODO: test the "methods" that have to adhere to the rule of 5 more accurately later. But for now it is ok...
 	}
 }

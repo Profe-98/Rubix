@@ -19,6 +19,58 @@ namespace Rubix
 		this->_size_phys = this->_buffer.size();
 	}
 
+	//Rule of 5!
+
+	MatrixStorage::~MatrixStorage() noexcept
+	{
+		std::cout << "Storage destructed!\n";
+	}
+
+	MatrixStorage::MatrixStorage(const MatrixStorage& storage) :  _mutable(storage._mutable), _resizable(storage._resizable), _buffer(storage._buffer), _strides(storage._strides), _size_phys(storage._size_phys), _size_logic(storage._size_logic), _offset(storage._offset), _rows(storage._rows), _cols(storage._cols) //copy c'tor
+	{
+
+	}
+
+	MatrixStorage& MatrixStorage::operator= (const MatrixStorage& storage) //copy assignment
+	{
+		if (this != &storage)
+		{
+			_mutable = storage._mutable;
+			_resizable = storage._resizable;
+			_buffer = storage._buffer;
+			_strides = storage._strides;
+			_size_phys = storage._size_phys;
+			_size_logic = storage._size_logic;
+			_offset = storage._offset;
+			_rows = storage._rows;
+			_cols = storage._cols;
+		}
+		return *this;
+	}
+
+	MatrixStorage::MatrixStorage(MatrixStorage&& storage) noexcept : _mutable(storage._mutable), _resizable(storage._resizable), _buffer(storage._buffer), _strides(storage._strides), _size_phys(storage._size_phys), _size_logic(storage._size_logic), _offset(storage._offset), _rows(storage._rows), _cols(storage._cols) //move c'tor
+	{
+
+	}
+
+	MatrixStorage& MatrixStorage::operator=(MatrixStorage&& storage) noexcept //move assignment
+	{
+		if (this != &storage)
+		{
+			_mutable = storage._mutable;
+			_resizable = storage._resizable;
+			_buffer = storage._buffer;
+			_strides = storage._strides;
+			_size_phys = storage._size_phys;
+			_size_logic = storage._size_logic;
+			_offset = storage._offset;
+			_rows = storage._rows;
+			_cols = storage._cols;
+		}
+
+		return *this;
+	}
+
 	std::vector<double> MatrixStorage::GetBuffer() const
 	{
 		return this->_buffer;

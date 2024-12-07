@@ -3,8 +3,8 @@
 #include <memory>
 #include <cmath>
 #include <iostream>
-#include <memory>
 #include <string>
+#include <utility>
 #include "../RubixLogSys/Exceptions.h"
 namespace Rubix
 {
@@ -12,6 +12,8 @@ namespace Rubix
 	{
 		private:
 
+
+		// const uint64_t MAX_VALUE_ROWS_AND_COLS = 4294967295;
 		bool _mutable = true;
 		bool _resizable = false;
 		std::vector<double> _buffer;
@@ -32,11 +34,11 @@ namespace Rubix
 		MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 
 		//TODO: Adhere to rule of five, before DirectX implementation
-		~MatrixStorage() noexcept = default;
-		MatrixStorage(const MatrixStorage&) = default;
-		MatrixStorage& operator =(const MatrixStorage&) = default;
-		MatrixStorage(MatrixStorage&&) noexcept = default;
-		MatrixStorage& operator =(MatrixStorage&&) noexcept = default;
+		~MatrixStorage() noexcept;
+		MatrixStorage(const MatrixStorage& storage);
+		MatrixStorage& operator =(const MatrixStorage& storage);
+		MatrixStorage(MatrixStorage&& storage) noexcept;
+		MatrixStorage& operator =(MatrixStorage&& storage) noexcept;
 
 
 		std::vector<double> GetBuffer() const;
