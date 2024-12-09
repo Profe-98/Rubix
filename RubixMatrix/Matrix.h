@@ -16,8 +16,8 @@ namespace Rubix
 	class Matrix
 	{
 	private:
-		MatrixStorage _storage;
-		std::string _name;
+		MatrixStorage _storage = MatrixStorage();
+		std::string _name = "Matrix";
 		
 
 	public:

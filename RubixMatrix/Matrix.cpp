@@ -18,20 +18,13 @@ namespace Rubix
 		this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, MatrixStorage storage, bool _resizable, bool _mutable) : _name(name), _storage(storage)
-	{
-
-	}
+	Matrix::Matrix(std::string name, MatrixStorage storage, bool _resizable, bool _mutable) : _name(name), _storage(storage) { }
 
 	Matrix::~Matrix() noexcept
 	{
-		std::cout << _name << ": Matrix d'tor called.\n";
 	}
 
-	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name)
-	{
-
-	}
+	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name)	{}
 
 	Matrix& Matrix::operator=(const Matrix& m)
 	{
@@ -43,10 +36,7 @@ namespace Rubix
 		return *this;
 	}
 
-	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name)
-	{
-
-	}
+	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name) {}
 
 	Matrix& Matrix::operator=(Matrix&& m) noexcept
 	{

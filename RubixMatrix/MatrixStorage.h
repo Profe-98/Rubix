@@ -10,14 +10,14 @@ namespace Rubix
 {
 	struct MatrixStorage
 	{
-		private:
+	private:
 
 
 		// const uint64_t MAX_VALUE_ROWS_AND_COLS = 4294967295;
 		bool _mutable = true;
 		bool _resizable = false;
-		std::vector<double> _buffer;
-		std::pair<uint64_t, uint64_t> _strides;
+		std::vector<double> _buffer = {};
+		std::pair<uint64_t, uint64_t> _strides{};
 		uint64_t _size_phys = 0; // represents the physical size of the matrix.
 		uint64_t _size_logic = 0;
 		uint64_t _offset = 0; // Position of the matrix's first element in the buffer. default is always 0
