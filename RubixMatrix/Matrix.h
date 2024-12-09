@@ -8,7 +8,7 @@
 #include <string>
 #include <map>
 #include <set>
-#include "MatrixStorage.h"
+#include "MatrixMemory.h"
 namespace Rubix
 {
 	using namespace std::chrono;
@@ -16,7 +16,7 @@ namespace Rubix
 	class Matrix
 	{
 	private:
-		MatrixStorage _storage = MatrixStorage();
+		MatrixMemory _memory = MatrixMemory();
 		std::string _name = "Matrix";
 		
 
@@ -26,7 +26,7 @@ namespace Rubix
 
 		Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor = true, bool _resizable = false, bool _mutable = true);
 
-		Matrix(std::string name, MatrixStorage storage, bool _resizable = false, bool _mutable = true);
+		Matrix(std::string name, MatrixMemory memory, bool _resizable = false, bool _mutable = true);
 
 		~Matrix() noexcept;
 

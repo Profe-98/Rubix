@@ -5,7 +5,7 @@ namespace Rubix
 	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, double elem, bool _resizable, bool _mutable) : _name(name)
 	{
 		std::pair<uint64_t, uint64_t> strides(0, 0);
-		this->_storage = MatrixStorage(elem, strides, rows * cols, rows, cols);
+		this->_memory = MatrixMemory(elem, strides, rows * cols, rows, cols);
 	}
 
 	Matrix::Matrix(std::string name, uint64_t rows, uint64_t cols, std::vector<double> elems, bool rowmajor, bool _resizable, bool _mutable) : _name{ name }
@@ -15,34 +15,34 @@ namespace Rubix
 			strides = { 1, cols };
 		else
 			strides = { rows, 1 };
-		this->_storage = MatrixStorage(elems, strides, rows * cols, rows, cols);
+		this->_memory = MatrixMemory(elems, strides, rows * cols, rows, cols);
 	}
 
-	Matrix::Matrix(std::string name, MatrixStorage storage, bool _resizable, bool _mutable) : _name(name), _storage(storage) { }
+	Matrix::Matrix(std::string name, MatrixMemory memory, bool _resizable, bool _mutable) : _name(name), _memory(memory) { }
 
 	Matrix::~Matrix() noexcept
 	{
 	}
 
-	Matrix::Matrix(const Matrix& m) : _storage(m._storage), _name(m._name)	{}
+	Matrix::Matrix(const Matrix& m) : _memory(m._memory), _name(m._name)	{}
 
 	Matrix& Matrix::operator=(const Matrix& m)
 	{
 		if (this != &m)
 		{
-			_storage = m._storage;
+			_memory = m._memory;
 			_name = m._name;
 		}
 		return *this;
 	}
 
-	Matrix::Matrix(Matrix&& m) noexcept : _storage(m._storage), _name(m._name) {}
+	Matrix::Matrix(Matrix&& m) noexcept : _memory(m._memory), _name(m._name) {}
 
 	Matrix& Matrix::operator=(Matrix&& m) noexcept
 	{
 		if (this != &m)
 		{
-			_storage = m._storage;
+			_memory = m._memory;
 			_name = m._name;
 		}
 		return *this;
@@ -75,12 +75,12 @@ namespace Rubix
 
 	bool Matrix::Is_mutable() const
 	{
-		return _storage.Is_mutable();
+		return _memory.Is_mutable();
 	}
 
 	bool Matrix::Is_resizable() const
 	{
-		return _storage.Is_resizable();
+		return _memory.Is_resizable();
 	}
 
 	void Matrix::make_mutable() const
@@ -98,42 +98,42 @@ namespace Rubix
 
 	uint64_t Matrix::size_logical() const
 	{
-		return this->_storage.GetSize_logic();
+		return this->_memory.GetSize_logic();
 	}
 
 	uint64_t Matrix::size_logical_b() const
 	{
-		return this->_storage.GetSize_logic() * sizeof(double);
+		return this->_memory.GetSize_logic() * sizeof(double);
 	}
 
 	uint64_t Matrix::size_physical() const
 	{
-		return this->_storage.GetSize_phys();
+		return this->_memory.GetSize_phys();
 	}
 
 	uint64_t Matrix::size_physical_b() const
 	{
-		return this->_storage.GetSize_phys_b();
+		return this->_memory.GetSize_phys_b();
 	}
 
 	uint64_t Matrix::Getrows() const
 	{
-		return this->_storage.GetRows();
+		return this->_memory.GetRows();
 	}
 
 	uint64_t Matrix::Getcols() const
 	{
-		return this->_storage.GetCols();
+		return this->_memory.GetCols();
 	}
 
 	std::pair<uint64_t, uint64_t> Matrix::Getstrides() const
 	{
-		return this->_storage.GetStrides();
+		return this->_memory.GetStrides();
 	}
 
 	std::vector<double> Matrix::GetEntries() const
 	{
-		return this->_storage.GetBuffer();
+		return this->_memory.GetBuffer();
 	}
 
 	std::string Matrix::GetDType() const
@@ -158,7 +158,7 @@ namespace Rubix
 		uint64_t m_size = r * c;
 		while (iter < m_size)
 		{
-			res += this->_storage.GetBuffer()[iter];
+			res += this->_memory.GetBuffer()[iter];
 			iter += c + 1;
 		}
 

@@ -25,7 +25,7 @@
     <ClCompile Include="RubixMain.cpp" />
     <ClCompile Include="RubixMatrix\Dtype.cpp" />
     <ClCompile Include="RubixMatrix\Matrix.cpp" />
-    <ClCompile Include="RubixMatrix\MatrixStorage.cpp" />
+    <ClCompile Include="RubixMatrix\MatrixMemory.cpp" />
     <ClCompile Include="RubixTensor\Tensor.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,7 +36,7 @@
     <ClInclude Include="RubixMain.h" />
     <ClInclude Include="RubixMatrix\Dtype.h" />
     <ClInclude Include="RubixMatrix\Matrix.h" />
-    <ClInclude Include="RubixMatrix\MatrixStorage.h" />
+    <ClInclude Include="RubixMatrix\MatrixMemory.h" />
     <ClInclude Include="RubixTensor\Tensor.h" />
   </ItemGroup>
   <ItemGroup>

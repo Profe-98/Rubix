@@ -8,7 +8,7 @@
 #include "../RubixLogSys/Exceptions.h"
 namespace Rubix
 {
-	struct MatrixStorage
+	struct MatrixMemory
 	{
 	private:
 
@@ -28,17 +28,17 @@ namespace Rubix
 		public:
 
 		//Default c'tor
-		MatrixStorage();
+		MatrixMemory();
 
-		MatrixStorage(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
-		MatrixStorage(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
+		MatrixMemory(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
+		MatrixMemory(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 
 		//TODO: Adhere to rule of five, before DirectX implementation
-		~MatrixStorage() noexcept;
-		MatrixStorage(const MatrixStorage& storage);
-		MatrixStorage& operator =(const MatrixStorage& storage);
-		MatrixStorage(MatrixStorage&& storage) noexcept;
-		MatrixStorage& operator =(MatrixStorage&& storage) noexcept;
+		~MatrixMemory() noexcept;
+		MatrixMemory(const MatrixMemory& storage);
+		MatrixMemory& operator =(const MatrixMemory& storage);
+		MatrixMemory(MatrixMemory&& storage) noexcept;
+		MatrixMemory& operator =(MatrixMemory&& storage) noexcept;
 
 
 		std::vector<double> GetBuffer() const;
@@ -74,38 +74,38 @@ namespace Rubix
 		void fill();
 
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Add_Scalar(double scalar);
+		MatrixMemory Add_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Add_Matrix(MatrixStorage other);
+		MatrixMemory Add_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Add_Eq_Scalar(double scalar);
+		MatrixMemory Add_Eq_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Add_Eq_Matrix(MatrixStorage other);
+		MatrixMemory Add_Eq_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Subtr_Scalar(double scalar);
+		MatrixMemory Subtr_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Subtr_Matrix(MatrixStorage other);
+		MatrixMemory Subtr_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Subtr_Eq_Scalar(double scalar);
+		MatrixMemory Subtr_Eq_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Subtr_Eq_Matrix(MatrixStorage other);
+		MatrixMemory Subtr_Eq_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Mult_Scalar(double scalar);
+		MatrixMemory Mult_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Mult_Matrix(MatrixStorage other);
+		MatrixMemory Mult_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Mult_Eq_Scalar(double scalar);
+		MatrixMemory Mult_Eq_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Mult_Eq_Matrix(MatrixStorage other);
+		MatrixMemory Mult_Eq_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Div_Scalar(double scalar);
+		MatrixMemory Div_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Div_Matrix(MatrixStorage other);
+		MatrixMemory Div_Matrix(MatrixMemory other);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Div_Eq_Scalar(double scalar);
+		MatrixMemory Div_Eq_Scalar(double scalar);
 		__declspec(deprecated("Not  implemented!"))
-		MatrixStorage Div_Eq_Matrix(MatrixStorage other);
+		MatrixMemory Div_Eq_Matrix(MatrixMemory other);
 
-		friend std::ostream& operator<<(std::ostream& op, MatrixStorage& strg);
+		friend std::ostream& operator<<(std::ostream& op, MatrixMemory& strg);
 	};
 }

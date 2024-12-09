@@ -60,7 +60,7 @@
     <ClCompile Include="RubixMatrix\Matrix.cpp">
       <Filter>Quelldateien\SourceMatrix</Filter>
     </ClCompile>
-    <ClCompile Include="RubixMatrix\MatrixStorage.cpp">
+    <ClCompile Include="RubixMatrix\MatrixMemory.cpp">
       <Filter>Quelldateien\SourceMatrix</Filter>
     </ClCompile>
     <ClCompile Include="RubixLogSys\Exceptions.cpp">
@@ -92,7 +92,7 @@
     <ClInclude Include="RubixMatrix\Matrix.h">
       <Filter>Headerdateien\HeaderMatrix</Filter>
     </ClInclude>
-    <ClInclude Include="RubixMatrix\MatrixStorage.h">
+    <ClInclude Include="RubixMatrix\MatrixMemory.h">
       <Filter>Headerdateien\HeaderMatrix</Filter>
     </ClInclude>
     <ClInclude Include="RubixTensor\Tensor.h">
