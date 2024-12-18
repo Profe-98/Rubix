@@ -14,7 +14,7 @@ using namespace Rubix;
 namespace
 {
 	using namespace boost::unit_test;
-	BOOST_AUTO_TEST_CASE(test_init)
+	BOOST_AUTO_TEST_CASE(test_init_test)
 	{
 		int res = RubixMain::Prepare_Library();
 		BOOST_CHECK(res == 1);

@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rubix", "Rubix.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataStructureInitTests", "DataStructureInitTests\DataStructureInitTests.vcxproj", "{87160230-70A7-49DD-90ED-1E2A646365FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_DirectComputeManager", "UnitTest_DirectComputeManager\UnitTest_DirectComputeManager.vcxproj", "{03F7F0C7-245B-4405-B7CF-D405C6A036B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{87160230-70A7-49DD-90ED-1E2A646365FE}.Release|x64.Build.0 = Release|x64
 		{87160230-70A7-49DD-90ED-1E2A646365FE}.Release|x86.ActiveCfg = Release|Win32
 		{87160230-70A7-49DD-90ED-1E2A646365FE}.Release|x86.Build.0 = Release|Win32
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Debug|x64.ActiveCfg = Debug|x64
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Debug|x64.Build.0 = Debug|x64
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Debug|x86.ActiveCfg = Debug|Win32
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Debug|x86.Build.0 = Debug|Win32
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Release|x64.ActiveCfg = Release|x64
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Release|x64.Build.0 = Release|x64
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Release|x86.ActiveCfg = Release|Win32
+		{03F7F0C7-245B-4405-B7CF-D405C6A036B8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
