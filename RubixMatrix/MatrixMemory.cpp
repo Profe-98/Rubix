@@ -67,6 +67,40 @@ namespace Rubix
 		return *this;
 	}
 
+	void MatrixMemory::LinkToDevice(std::string name)
+	{
+
+	}
+
+	ID3D11Device* MatrixMemory::GetLinkedDevice()
+	{
+		return DirectCompute_Manager::Get_Device_And_Context(_linked_device).first;
+	}
+
+	void MatrixMemory::SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type)
+	{
+		switch (type)
+		{
+			case Rubix::DirectCompute_Manager::RUBIX_SHADER:
+				_active_compute_shader = DirectCompute_Manager::Get_Source_Rbx_Shader(name);
+				break;
+			case Rubix::DirectCompute_Manager::RUBIX_ANALYTICS:
+				_active_compute_shader = DirectCompute_Manager::Get_Source_Rbx_Analytics(name);
+				break;
+			case Rubix::DirectCompute_Manager::RUBIX_INTERIM:
+				_active_compute_shader = DirectCompute_Manager::Get_Source_Rbx_Interim(name);
+				break;
+			case Rubix::DirectCompute_Manager::CUSTOM:
+				_active_compute_shader = DirectCompute_Manager::Get_Source_Custom_Shader(name);
+				break;
+		}
+	}
+
+	std::string MatrixMemory::GetActiveComputeShader()
+	{
+		return _active_compute_shader;
+	}
+
 	std::vector<double> MatrixMemory::GetBuffer() const
 	{
 		return this->_buffer;

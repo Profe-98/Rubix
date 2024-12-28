@@ -1,4 +1,14 @@
 #pragma once
+
+
+#ifndef _WIN32_WINNT 0x600
+	#define _WIN32_WINNT 0x600
+#endif // !_WIN32_WINNT
+
+#include <d3d11.h>
+#include <d3d12.h>
+#include <d3dcompiler.h>
+#include <libloaderapi.h>
 #include <vector>
 #include <memory>
 #include <cmath>
@@ -6,16 +16,21 @@
 #include <string>
 #include <utility>
 #include "../RubixLogSys/Exceptions.h"
+#include "../RubixDXCompute/DirectCompute_Manager.h"
+
+
 namespace Rubix
 {
 	struct MatrixMemory
 	{
+
 	private:
 
-
-		// const uint64_t MAX_VALUE_ROWS_AND_COLS = 4294967295;
+	    //const uint64_t MAX_VALUE_ROWS_AND_COLS = UINT64_MAX;
 		bool _mutable = true;
 		bool _resizable = false;
+		std::string _active_compute_shader = "";
+		std::string _linked_device = "";
 		std::vector<double> _buffer = {};
 		std::pair<uint64_t, uint64_t> _strides{};
 		uint64_t _size_phys = 0; // represents the physical size of the matrix.
@@ -33,13 +48,19 @@ namespace Rubix
 		MatrixMemory(std::vector<double> buffer, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 		MatrixMemory(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 
-		//TODO: Adhere to rule of five, before DirectX implementation
 		~MatrixMemory() noexcept;
 		MatrixMemory(const MatrixMemory& storage);
 		MatrixMemory& operator =(const MatrixMemory& storage);
 		MatrixMemory(MatrixMemory&& storage) noexcept;
 		MatrixMemory& operator =(MatrixMemory&& storage) noexcept;
 
+		void LinkToDevice(std::string name);
+
+		ID3D11Device* GetLinkedDevice();
+
+		void SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type = DirectCompute_Manager::SHADER_SOURCE_TYPE::RUBIX_SHADER);
+
+		std::string GetActiveComputeShader();
 
 		std::vector<double> GetBuffer() const;
 

@@ -46,6 +46,9 @@
     <Filter Include="Quelldateien\SourceTensor">
       <UniqueIdentifier>{2465b0bc-9c40-4876-80fc-77ec7a9f34f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RubixShaders\MatrixOperations\ML">
+      <UniqueIdentifier>{26c3b841-2551-4793-8bf9-964bbbfc851e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RubixMain.cpp">
@@ -129,6 +132,9 @@
     </FxCompile>
     <FxCompile Include="RubixShaders\TensorOperations\TensorDiv.hlsl">
       <Filter>RubixShaders\TensorOperations</Filter>
+    </FxCompile>
+    <FxCompile Include="RubixShaders\MatrixOperations\ML\TestCS.hlsl">
+      <Filter>RubixShaders\MatrixOperations\ML</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
