@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /RubixShaders/MatrixOperations/shaders
 /RubixShaders/MatrixOperations/MatrixOps.sprj
 /UnitTest_DirectComputeManager
+/UnitTest_Matrix_Shader
