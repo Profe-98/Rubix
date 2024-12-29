@@ -54,27 +54,6 @@ namespace Rubix
 		return S_OK;
 	}
 
-	HRESULT DirectCompute_Manager::AddD3D11Device(std::string devicename, IDXGIAdapter* adapter, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion)
-	{
-		D3D_FEATURE_LEVEL featurelvl{};
-		ID3D11Device* device;
-		ID3D11DeviceContext* context;
-		HRESULT hr = D3D11CreateDevice(adapter, drivertype, software, flags, nullptr, 0, sdkversion, &device, &featurelvl, &context); //TODO extend parameter list fdor the method...
-		if (FAILED(hr))
-		{
-			//TODO: logging
-			return E_FAIL;
-		}
-		_devices_dx11[devicename] = { device, context };
-		_devices_dx11_feature_lvls[devicename] = featurelvl;
-		return NOERROR;
-	}
-
-	std::pair<ID3D11Device*, ID3D11DeviceContext*> DirectCompute_Manager::Get_Device_And_Context(std::string name)
-	{
-		return _devices_dx11[name];
-	}
-
 	std::string DirectCompute_Manager::Get_Source_Rbx_Shader(std::string name)
 	{
 		return _sources_rbxShader[name];

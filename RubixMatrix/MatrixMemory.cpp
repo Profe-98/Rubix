@@ -2,6 +2,8 @@
 namespace Rubix 
 {
 
+#pragma region Ctors and RULE OF 5
+
 	//Default c'tor
 	MatrixMemory::MatrixMemory()
 	{
@@ -23,59 +25,51 @@ namespace Rubix
 	{
 	}
 
-	MatrixMemory::MatrixMemory(const MatrixMemory& storage) :  _mutable(storage._mutable), _resizable(storage._resizable), _buffer(storage._buffer), _strides(storage._strides), _size_phys(storage._size_phys), _size_logic(storage._size_logic), _offset(storage._offset), _rows(storage._rows), _cols(storage._cols) //copy c'tor
+	MatrixMemory::MatrixMemory(const MatrixMemory& memory) :  _mutable(memory._mutable), _resizable(memory._resizable), _buffer(memory._buffer), _strides(memory._strides), _size_phys(memory._size_phys), _size_logic(memory._size_logic), _offset(memory._offset), _rows(memory._rows), _cols(memory._cols) //copy c'tor
 	{
 	}
 
-	MatrixMemory& MatrixMemory::operator= (const MatrixMemory& storage) //copy assignment
+	MatrixMemory& MatrixMemory::operator= (const MatrixMemory& memory) //copy assignment
 	{
-		if (this != &storage)
+		if (this != &memory)
 		{
-			_mutable = storage._mutable;
-			_resizable = storage._resizable;
-			_buffer = storage._buffer;
-			_strides = storage._strides;
-			_size_phys = storage._size_phys;
-			_size_logic = storage._size_logic;
-			_offset = storage._offset;
-			_rows = storage._rows;
-			_cols = storage._cols;
+			_mutable = memory._mutable;
+			_resizable = memory._resizable;
+			_buffer = memory._buffer;
+			_strides = memory._strides;
+			_size_phys = memory._size_phys;
+			_size_logic = memory._size_logic;
+			_offset = memory._offset;
+			_rows = memory._rows;
+			_cols = memory._cols;
 		}
 		return *this;
 	}
 
-	MatrixMemory::MatrixMemory(MatrixMemory&& storage) noexcept : _mutable(storage._mutable), _resizable(storage._resizable), _buffer(storage._buffer), _strides(storage._strides), _size_phys(storage._size_phys), _size_logic(storage._size_logic), _offset(storage._offset), _rows(storage._rows), _cols(storage._cols) //move c'tor 	
+	MatrixMemory::MatrixMemory(MatrixMemory&& memory) noexcept : _mutable(memory._mutable), _resizable(memory._resizable), _buffer(memory._buffer), _strides(memory._strides), _size_phys(memory._size_phys), _size_logic(memory._size_logic), _offset(memory._offset), _rows(memory._rows), _cols(memory._cols) //move c'tor 	
 	{
 
 	}
 
-	MatrixMemory& MatrixMemory::operator=(MatrixMemory&& storage) noexcept //move assignment
+	MatrixMemory& MatrixMemory::operator=(MatrixMemory&& memory) noexcept //move assignment
 	{
-		if (this != &storage)
+		if (this != &memory)
 		{
-			_mutable = storage._mutable;
-			_resizable = storage._resizable;
-			_buffer = storage._buffer;
-			_strides = storage._strides;
-			_size_phys = storage._size_phys;
-			_size_logic = storage._size_logic;
-			_offset = storage._offset;
-			_rows = storage._rows;
-			_cols = storage._cols;
+			_mutable = memory._mutable;
+			_resizable = memory._resizable;
+			_buffer = memory._buffer;
+			_strides = memory._strides;
+			_size_phys = memory._size_phys;
+			_size_logic = memory._size_logic;
+			_offset = memory._offset;
+			_rows = memory._rows;
+			_cols = memory._cols;
 		}
 
 		return *this;
 	}
 
-	void MatrixMemory::LinkToDevice(std::string name)
-	{
-
-	}
-
-	ID3D11Device* MatrixMemory::GetLinkedDevice()
-	{
-		return DirectCompute_Manager::Get_Device_And_Context(_linked_device).first;
-	}
+#pragma endregion
 
 	void MatrixMemory::SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type)
 	{
@@ -131,10 +125,6 @@ namespace Rubix
 		return this->_offset;
 	}
 
-	void MatrixMemory::GetDevice() const
-	{
-
-	}
 
 	uint64_t MatrixMemory::GetRows() const
 	{

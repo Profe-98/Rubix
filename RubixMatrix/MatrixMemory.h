@@ -1,9 +1,7 @@
 #pragma once
 
 
-#ifndef _WIN32_WINNT 0x600
-	#define _WIN32_WINNT 0x600
-#endif // !_WIN32_WINNT
+#define _WIN32_WINNT 0x600
 
 #include <d3d11.h>
 #include <d3d12.h>
@@ -30,7 +28,6 @@ namespace Rubix
 		bool _mutable = true;
 		bool _resizable = false;
 		std::string _active_compute_shader = "";
-		std::string _linked_device = "";
 		std::vector<double> _buffer = {};
 		std::pair<uint64_t, uint64_t> _strides{};
 		uint64_t _size_phys = 0; // represents the physical size of the matrix.
@@ -49,14 +46,12 @@ namespace Rubix
 		MatrixMemory(double val, std::pair<uint64_t, uint64_t> strides, uint64_t size_logic, uint64_t rows, uint64_t cols, uint64_t offset = 0, bool _resizable = false, bool _mutable = true);
 
 		~MatrixMemory() noexcept;
-		MatrixMemory(const MatrixMemory& storage);
-		MatrixMemory& operator =(const MatrixMemory& storage);
-		MatrixMemory(MatrixMemory&& storage) noexcept;
-		MatrixMemory& operator =(MatrixMemory&& storage) noexcept;
+		MatrixMemory(const MatrixMemory& memory);
+		MatrixMemory& operator =(const MatrixMemory& memory);
+		MatrixMemory(MatrixMemory&& memory) noexcept;
+		MatrixMemory& operator =(MatrixMemory&& memory) noexcept;
 
-		void LinkToDevice(std::string name);
-
-		ID3D11Device* GetLinkedDevice();
+		void CreateDevice(IDXGIAdapter* adapter, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
 
 		void SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type = DirectCompute_Manager::SHADER_SOURCE_TYPE::RUBIX_SHADER);
 

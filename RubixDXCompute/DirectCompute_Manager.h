@@ -42,9 +42,6 @@ namespace Rubix
 			inline static std::map<std::string, std::string> _sources_rbxAnalytics;
 			inline static std::map<std::string, std::string> _sources_rbxInterim;
 			inline static std::map<std::string, std::string> _sources_CustomShader;
-			inline static std::map<std::string, std::pair<ID3D11Device*, ID3D11DeviceContext*>> _devices_dx11;
-			inline static std::map<std::string, D3D_FEATURE_LEVEL> _devices_dx11_feature_lvls;
-			inline static std::map<std::string, ID3D12Device*> _devices_dx12; // TODO: implement this properly...
 
 		public:
 
@@ -57,9 +54,6 @@ namespace Rubix
 			};
 
 			static HRESULT LoadSources(std::vector<fs::path> paths, std::vector<std::string> names, SHADER_SOURCE_TYPE srctype = SHADER_SOURCE_TYPE::RUBIX_SHADER);
-			static HRESULT AddD3D11Device(std::string devicvename, IDXGIAdapter* adapter, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
-
-			static std::pair<ID3D11Device*, ID3D11DeviceContext*> Get_Device_And_Context(std::string name);
 
 			static std::string Get_Source_Rbx_Shader(std::string name);
 			static std::string Get_Source_Rbx_Analytics(std::string name);
