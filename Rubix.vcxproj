@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RubixDXCompute\DirectCompute_Manager.cpp" />
+    <ClCompile Include="RubixDXGIManger\DXGIMngr.cpp" />
     <ClCompile Include="RubixLogSys\Exceptions.cpp" />
     <ClCompile Include="RubixLogSys\LogHandler.cpp" />
     <ClCompile Include="RubixMain.cpp" />
@@ -29,8 +30,11 @@
     <ClCompile Include="RubixTensor\Tensor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RubixDefinitions.h" />
+    <ClInclude Include="RubixError.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RubixDXCompute\DirectCompute_Manager.h" />
+    <ClInclude Include="RubixDXGIManger\DXGIMngr.h" />
     <ClInclude Include="RubixLogSys\Exceptions.h" />
     <ClInclude Include="RubixLogSys\LogHandler.h" />
     <ClInclude Include="RubixMain.h" />

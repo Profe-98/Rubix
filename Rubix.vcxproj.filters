@@ -49,6 +49,12 @@
     <Filter Include="RubixShaders\MatrixOperations\ML">
       <UniqueIdentifier>{26c3b841-2551-4793-8bf9-964bbbfc851e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\HeaderDXGIManager">
+      <UniqueIdentifier>{5af0008c-5694-434e-92c8-d6e6275b4a18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\SourceDXGIManager">
+      <UniqueIdentifier>{d153e6bf-81a7-47be-bd20-9dc2a2f4743b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RubixMain.cpp">
@@ -74,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="RubixDXCompute\DirectCompute_Manager.cpp">
       <Filter>Quelldateien\SourceDXCompute</Filter>
+    </ClCompile>
+    <ClCompile Include="RubixDXGIManger\DXGIMngr.cpp">
+      <Filter>Quelldateien\SourceDXGIManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +111,15 @@
       <Filter>Headerdateien\HeaderTensor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixDXGIManger\DXGIMngr.h">
+      <Filter>Headerdateien\HeaderDXGIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixError.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RubixDefinitions.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

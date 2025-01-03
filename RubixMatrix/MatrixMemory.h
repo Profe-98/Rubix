@@ -1,6 +1,5 @@
 #pragma once
 
-
 #define _WIN32_WINNT 0x600
 
 #include <d3d11.h>
@@ -23,6 +22,8 @@ namespace Rubix
 	{
 
 	private:
+
+		//TODO: CheckFeatureSupport()
 
 	    //const uint64_t MAX_VALUE_ROWS_AND_COLS = UINT64_MAX;
 		bool _mutable = true;
@@ -52,6 +53,8 @@ namespace Rubix
 		MatrixMemory& operator =(MatrixMemory&& memory) noexcept;
 
 		void CreateDevice(IDXGIAdapter* adapter, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
+
+		void checklol();
 
 		void SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type = DirectCompute_Manager::SHADER_SOURCE_TYPE::RUBIX_SHADER);
 

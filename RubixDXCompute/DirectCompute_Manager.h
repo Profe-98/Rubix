@@ -1,11 +1,5 @@
 #pragma once
 
-#define _WIN32_WINNT 0x600
-
-#include <d3d11.h>
-#include <d3d12.h>
-#include <d3dcompiler.h>
-#include <libloaderapi.h>
 #include <iostream>
 #include <stdint.h>
 #include <winerror.h>
@@ -24,11 +18,6 @@
 #include <initializer_list>
 #include <map>
 #include <filesystem>
-
-
-// Link necessary D3D libraries
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "d3dcompiler.lib")
 
 namespace fs = std::filesystem;
 

@@ -1,22 +1,24 @@
 #pragma once
+#include <winerror.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <iostream>
 #include <filesystem>
 #include <memory>
-#define RBX_SUCCESS 1
-#define RBX_ERR 0
+
+#include "RubixDefinitions.h"
+
 
 
 namespace Rubix
 {
+	using namespace Definitions;
 	class RubixMain
 	{
-	private:
+		public:	
 
-	public:	
-		static int Prepare_Library();
+			static HRESULT Prepare_Library();
 	};
 }
 
