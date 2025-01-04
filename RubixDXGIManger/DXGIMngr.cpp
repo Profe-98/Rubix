@@ -24,17 +24,33 @@ HRESULT DXGIMngr::ListAvailableAdapters(Rubix::Definitions::RBXDEF::DXGI_VERSION
 {
 	HRESULT hr = 0;
 
-	/*/
+	#ifdef DX11
 		IDXGIFactory4* pfactory = nullptr;
 		IDXGIAdapter3* adap = nullptr;
-		HRESULT hr = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory4), (void**)(&pfactory));
-		if (FAILED(hr)) { return E_FAIL; }
+		hr = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory4), (void**)(&pfactory));
+		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
 		hr = AddAdapter(pfactory, adap);
-		if (FAILED(hr)) { return E_FAIL; }
-		return S_OK;
+		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
+	#elif defined(DX12) 
+		IDXGIFactory5* pfactory = nullptr;
+		IDXGIAdapter3* adap = nullptr;
+		hr = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory5), (void**)(&pfactory));
+		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
+		hr = AddAdapter(pfactory, adap);
+		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
+	#elif defined(DX12_x)
+		IDXGIFactory7* pfactory = nullptr;
+		IDXGIAdapter4* adap = nullptr;
+		hr = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory7), (void**)(&pfactory));
+		if (FAILED(hr)) { /*logging*/ return hr; }
+		hr = AddAdapter(pfactory, adap);
+		if (FAILED(hr)) { /*logging*/ return hr; }
+	#endif // DX11, 12 or 12_x?
+
+	/*/
+
 	/**/
-
-
 	
+	return S_OK;
 
 }

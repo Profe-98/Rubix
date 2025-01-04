@@ -6,15 +6,11 @@
 
 #ifdef DX11
 #include <dxgi1_4.h>
-#endif // DX11
-
-#ifdef DX12
+#elif defined(DX12)
 #include <dxgi1_5.h>
-#endif // DX12
-
-#ifdef DX12_x
+#elif defined(DX12_x)
 #include <dxgi1_6.h>
-#endif // DX12_x
+#endif // DX11 , 12 or 12_X? DX12_x = DirectX 12 with small additional features. DirectX has no additional minor versions, like DirectX 12.1 or 12.2.
 
 #include <dxgidebug.h> //TODO: play around with this(?)
 #include <d3d11.h>
