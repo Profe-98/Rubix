@@ -168,6 +168,10 @@ namespace Rubix
 		return res;
 	}
 
+	#if defined DX12
+
+	#endif
+
 	double Matrix::operator()(uint64_t m, uint64_t n)
 	{
 		if (m >= this->Getrows() || n >= this->Getcols())

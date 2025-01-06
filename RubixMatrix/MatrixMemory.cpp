@@ -71,6 +71,26 @@ namespace Rubix
 
 #pragma endregion
 
+	HRESULT MatrixMemory::CreateDevice(std::set<IDXGIAdapter*> adapters, D3D_FEATURE_LEVEL featurelevel, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion)
+	{
+		HRESULT hr = 0;
+
+		#if defined DX12 || defined DX12_x
+		ID3D12Device* device = nullptr;
+			//if(SUCCEEDED()) { } TODO: continue with check of adapter being able to use DX12 	
+			//hr = D3D12CreateDevice(, featurelevel, IID_PPV_ARGS(&device));
+			if (FAILED(hr)) { /*logging*/ return hr; }
+			_dx12Devices.insert(device);
+		#elif defined(DX11)
+			ID3D11Device* device = nullptr;
+			ID3D11DeviceContext* context = nullptr;
+			hr = D3D11CreateDevice(adapter, drivertype, software, flags, nullptr, 0, sdkversion, &device, &featurelevel, &context);
+			if (FAILED(hr)) { /*logging*/ return hr; }
+			_dx11Devices.insert(device);
+		#endif
+		return S_OK;
+	}
+
 	void MatrixMemory::SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type)
 	{
 		switch (type)
@@ -151,15 +171,20 @@ namespace Rubix
 		return _resizable;
 	}
 
+	void MatrixMemory::resize()
+	{
+
+	}
+
 	void MatrixMemory::fill()
 	{
 
 	}
 
-	void MatrixMemory::resize()
-	{
+	#if defined(DX12) || defined(DX12_x)
+	
+	#endif
 
-	}
 
 	MatrixMemory MatrixMemory::Add_Scalar(double scalar)
 	{

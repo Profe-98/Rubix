@@ -1,9 +1,19 @@
 #pragma once
+#include "../RubixDXGIManger/DXGIMngr.h"
+#include "../RubixLogSys/Exceptions.h"
+#include "../RubixDXCompute/DirectCompute_Manager.h"
 
-#define _WIN32_WINNT 0x600
+#ifndef _WIN32_WINNT
+	#define _WIN32_WINNT 0x600
+#endif // !_WIN32_WINNT
 
-#include <d3d11.h>
-#include <d3d12.h>
+
+#ifdef DX11
+	#include <d3d11.h>
+#elif defined DX12
+	#include <d3d12.h>
+#endif // DX11
+
 #include <d3dcompiler.h>
 #include <libloaderapi.h>
 #include <vector>
@@ -12,8 +22,6 @@
 #include <iostream>
 #include <string>
 #include <utility>
-#include "../RubixLogSys/Exceptions.h"
-#include "../RubixDXCompute/DirectCompute_Manager.h"
 
 
 namespace Rubix
@@ -31,6 +39,13 @@ namespace Rubix
 		std::string _active_compute_shader = "";
 		std::vector<double> _buffer = {};
 		std::pair<uint64_t, uint64_t> _strides{};
+
+		#if defined DX12
+			std::set<ID3D12Device*> _dx12Devices = {};
+		#elif defined DX11
+			std::set<ID3D11Device*> _dx11Devices = {};
+		#endif
+
 		uint64_t _size_phys = 0; // represents the physical size of the matrix.
 		uint64_t _size_logic = 0;
 		uint64_t _offset = 0; // Position of the matrix's first element in the buffer. default is always 0
@@ -52,9 +67,7 @@ namespace Rubix
 		MatrixMemory(MatrixMemory&& memory) noexcept;
 		MatrixMemory& operator =(MatrixMemory&& memory) noexcept;
 
-		void CreateDevice(IDXGIAdapter* adapter, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
-
-		void checklol();
+		HRESULT CreateDevice(std::set<IDXGIAdapter*> adapters, D3D_FEATURE_LEVEL featurelevel, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
 
 		void SetActiveComputeShader(std::string name, DirectCompute_Manager::SHADER_SOURCE_TYPE type = DirectCompute_Manager::SHADER_SOURCE_TYPE::RUBIX_SHADER);
 
@@ -91,6 +104,10 @@ namespace Rubix
 
 		__declspec(deprecated("Not  implemented!"))
 		void fill();
+
+		#if defined DX12
+
+		#endif
 
 		__declspec(deprecated("Not  implemented!"))
 		MatrixMemory Add_Scalar(double scalar);

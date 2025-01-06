@@ -87,6 +87,10 @@ namespace Rubix
 		__declspec(deprecated("Not fully implemented/experimental. Will lead to fatal error!"))
 		double Trace();
 
+		#if defined DX12
+
+		#endif
+
 		/// <summary>
 		/// This operator is used to access a single element / entry in the matrix 
 		/// </summary>

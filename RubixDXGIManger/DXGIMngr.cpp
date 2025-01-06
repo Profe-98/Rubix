@@ -38,7 +38,7 @@ HRESULT DXGIMngr::ListAvailableAdapters(Rubix::Definitions::RBXDEF::DXGI_VERSION
 		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
 		hr = AddAdapter(pfactory, adap);
 		if (FAILED(hr)) { /*logging*/ return E_FAIL; }
-	#elif defined(DX12_x)
+	#elif defined(DX12_x) //TODO: minor versions...
 		IDXGIFactory7* pfactory = nullptr;
 		IDXGIAdapter4* adap = nullptr;
 		hr = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory7), (void**)(&pfactory));
