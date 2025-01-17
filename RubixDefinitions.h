@@ -5,6 +5,7 @@ namespace Rubix::Definitions
 	class RBXDEF
 	{
 		public:
+
 			enum DXGI_VERSION : int
 			{
 				_1_4 = 4,

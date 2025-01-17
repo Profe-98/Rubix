@@ -3,13 +3,13 @@
 #define _WIN32_WINNT 0x600
 
 #include "../../RubixCfg.h"
-
+#include <map>
 #ifdef DX11
 #include <dxgi1_4.h>
-#elif defined(DX12) 
+#elif defined DX12
 #include <dxgi1_5.h>
 #include <dxgi1_6.h>
-#endif // DX11( can be = 0 or 1 ), 12( can be = 0, 1 or 2)
+#endif
 
 #include <dxgidebug.h> //TODO: play around with this(?)
 #include <d3d11.h>
@@ -35,12 +35,18 @@ namespace Rubix::DirectX
 {
 	class DXGIMngr
 	{
-		private:
-			static HRESULT AddAdapter(IDXGIFactory* pfactory, IDXGIAdapter* adap);
 		public:
-			static inline std::set<IDXGIAdapter*> _available_adapters;
+
+			static inline std::set<IDXGIAdapter*> _available_adapters = { nullptr };
+			static inline std::map<int, std::pair<ID3D11Device*, ID3D11DeviceContext*>> _dx11Devices = {};
+			static HRESULT AddAdapter(IDXGIFactory* pfactory, IDXGIAdapter* adap);
 
 			static HRESULT ListAvailableAdapters(Rubix::Definitions::RBXDEF::DXGI_VERSION dxgi_ver, UINT flags = 0);
+
+			static void ReleaseDX11Devices();
+
+			static HRESULT CreateDX11Devices(D3D_FEATURE_LEVEL featurelevel, D3D_DRIVER_TYPE drivertype, HMODULE software, UINT flags, UINT sdkversion);
+
 	};
 
 }
