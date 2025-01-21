@@ -154,6 +154,9 @@
     <FxCompile Include="RubixShaders\MatrixOperations\ML\TestCS.hlsl">
       <Filter>RubixShaders\MatrixOperations\ML</Filter>
     </FxCompile>
+    <FxCompile Include="RubixShaders\MatrixOperations\ML\TestCSHidden.hlsl">
+      <Filter>RubixShaders\MatrixOperations\ML</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Rubix.rc">
