@@ -237,14 +237,14 @@ namespace Rubix
 		for (auto& buffer : _dx11buffers_input)
 		{
 			HRESULT hr = _dx11Device.first->CreateUnorderedAccessView(buffer, uavdesc, &_dx11uav);
-			if (FAILED(hr)) { ReleaseBuffersInput(); ReleaseBuffersOutput(); ReleaseBuffersStaging(); ReleaseUAVs();  /*logging*/ return E_FAIL; }
+			if (FAILED(hr)) { DX11ReleaseBuffersInput(); DX11ReleaseBuffersOutput(); DX11ReleaseBuffersStaging(); DX11ReleaseUAVs();  /*logging*/ return E_FAIL; }
 			_dx11_unordered_access_views.emplace_back(_dx11uav);
 		}
 
 		for (auto& buffer : _dx11buffers_output)
 		{
 			HRESULT hr = _dx11Device.first->CreateUnorderedAccessView(buffer, uavdesc, &_dx11uav);
-			if (FAILED(hr)) { ReleaseBuffersInput(); ReleaseBuffersOutput(); ReleaseBuffersStaging(); ReleaseUAVs();  /*logging*/ return E_FAIL; }
+			if (FAILED(hr)) { DX11ReleaseBuffersInput(); DX11ReleaseBuffersOutput(); DX11ReleaseBuffersStaging(); DX11ReleaseUAVs();  /*logging*/ return E_FAIL; }
 			_dx11_unordered_access_views.emplace_back(_dx11uav);
 		}
 
@@ -305,6 +305,44 @@ namespace Rubix
 		_dx11Device.second->Unmap(buffer_staging, 0);
 		buffer_staging->Release();
 		return S_OK;
+	}
+
+	void MatrixMemory::DX11ReleaseBuffersInput()
+	{
+		for (auto& buffer : _dx11buffers_input)
+			buffer->Release();
+	}
+
+	void MatrixMemory::DX11ReleaseBuffersOutput()
+	{
+		for (auto& buffer : _dx11buffers_output)
+			buffer->Release();
+	}
+
+	void MatrixMemory::DX11ReleaseBuffersStaging()
+	{
+		for (auto& buffer : _dx11buffers_staging)
+			buffer->Release();
+	}
+
+	void MatrixMemory::DX11ReleaseUAVs()
+	{
+		for (auto& uav : _dx11_unordered_access_views)
+			uav->Release();
+	}
+
+	void MatrixMemory::DX11ReleaseShader()
+	{
+		_dx11shader->Release();
+	}
+
+	void MatrixMemory::DX11ReleaseDevice()
+	{
+		ID3D11Device* dvc = _dx11Device.first;
+		ID3D11DeviceContext* ctxt = _dx11Device.second;
+		_dx11Device = { nullptr, nullptr };
+		ctxt->Release();
+		dvc->Release();
 	}
 
 	std::pair<ID3D11Device*, ID3D11DeviceContext*> MatrixMemory::GetDeviceAndContextDX11(int id)
@@ -410,6 +448,21 @@ namespace Rubix
 
 	void MatrixMemory::fill()
 	{
+
+	}
+
+	void MatrixMemory::Release()
+	{
+		#ifdef DX12
+
+		#elif defined DX11
+		DX11ReleaseBuffersInput();
+		DX11ReleaseBuffersOutput();
+		DX11ReleaseBuffersStaging();
+		DX11ReleaseUAVs();
+		DX11ReleaseShader();
+		DX11ReleaseDevice();
+		#endif // DX12
 
 	}
 

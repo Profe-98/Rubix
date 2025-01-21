@@ -120,11 +120,12 @@ namespace Rubix
 
 		HRESULT RetrieveOutputDataDX11(int id, std::vector<double> buffer_destination, int outputindexer);
 
-		void ReleaseBuffersInput();
-		void ReleaseBuffersOutput();
-		void ReleaseBuffersStaging();
-		void ReleaseUAVs();
-		void ReleaseDevice();
+		void DX11ReleaseBuffersInput();
+		void DX11ReleaseBuffersOutput();
+		void DX11ReleaseBuffersStaging();
+		void DX11ReleaseUAVs();
+		void DX11ReleaseShader();
+		void DX11ReleaseDevice();
 
 		//TODO Check if multiple devices can be used for multiple matrices
 		std::pair<ID3D11Device*, ID3D11DeviceContext*> GetDeviceAndContextDX11(int id); // for the case that 2+ matrices have to be stored on one gpu...  
@@ -168,6 +169,8 @@ namespace Rubix
 
 		__declspec(deprecated("Not  implemented!"))
 		void fill();
+
+		void Release();
 
 		#pragma endregion
 
